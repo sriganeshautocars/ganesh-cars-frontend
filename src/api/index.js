@@ -1,8 +1,10 @@
 import axios from "axios"
 
+axios.defaults.withCredentials = true;
+
 export const addCar = async (carData) => {
     try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars`, { ...carData }, { headers: { Authorization: 'Bearer ' + localStorage.getItem('auth_token') } })
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars`, { ...carData }, { withCredentials: true })
         return response;
     }
     catch (error) {
@@ -37,7 +39,7 @@ export const getCarById = async (id) => {
 
 export const updateCarDetails = async (carDetails) => {
     try {
-        const response = await axios.put(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars/${carDetails?.id}`, carDetails, { headers: { Authorization: 'Bearer ' + localStorage.getItem('auth_token') } })
+        const response = await axios.put(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars/${carDetails?.id}`, carDetails, { withCredentials: true })
         return response;
     }
     catch (error) {
@@ -47,7 +49,7 @@ export const updateCarDetails = async (carDetails) => {
 
 export const deleteCar = async (id) => {
     try {
-        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars/${id}`, { headers: { Authorization: 'Bearer ' + localStorage.getItem('auth_token') } })
+        const response = await axios.delete(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars/${id}`, { withCredentials: true })
         return response;
     }
     catch (error) {
@@ -57,7 +59,7 @@ export const deleteCar = async (id) => {
 
 export const uploadImage = async (formData, isSingle = true) => {
     try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/upload/${isSingle ? 'single' : 'multiple'}`, formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.getItem('auth_token') } });
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/upload/${isSingle ? 'single' : 'multiple'}`, formData, { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true });
         return response;
     }
     catch (error) {
@@ -73,5 +75,25 @@ export const userLogin = async (userData) => {
     }
     catch (error) {
         console.log('Error while login', error);
+    }
+}
+
+export const userLogout = async () => {
+    try {
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_SERVER_URL}/auth/logout`, {}, { withCredentials: true });
+        return response;
+    }
+    catch (error) {
+        console.log('Error while logout', error);
+    }
+}
+
+export const checkAuthStatus = async () => {
+    try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/auth/check`, { withCredentials: true });
+        return response;
+    }
+    catch (error) {
+        console.log('Error while checking auth status', error);
     }
 }

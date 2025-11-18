@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkAuthStatus } from '../../api';
 
 
 export const CheckAuth = ({ children }) => {
@@ -10,7 +11,8 @@ export const CheckAuth = ({ children }) => {
     useEffect(() => {
         const checkLoginStatus = async () => {
             try {
-                if (localStorage.getItem('auth_token')) {
+                const authResponse = await checkAuthStatus();
+                if (authResponse?.data?.loggedIn) {
                     navigate('/dashboard');
                 }
                 else {
