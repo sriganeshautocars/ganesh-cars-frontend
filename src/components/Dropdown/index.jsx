@@ -19,14 +19,14 @@ export const Dropdown = ({ label, options = [], defaultValue = '', onChange }) =
     const selectedLabel = options.find(opt => (opt.value === selectedOption) || (opt.value === defaultValue))?.label || 'Select';
 
     return (
-        <div className="flex flex-col relative" ref={dropdownRef}>
+        <div className="flex flex-col relative w-full" ref={dropdownRef}>
             {label && (
                 <label className="mb-1 text-sm font-medium">
                     {label}
                 </label>
             )}
             <div
-                className="border p-2 rounded cursor-pointer bg-white flex justify-between items-center"
+                className="w-full border p-2 rounded cursor-pointer bg-white flex justify-between items-center"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <span>{selectedLabel}</span>
@@ -35,7 +35,7 @@ export const Dropdown = ({ label, options = [], defaultValue = '', onChange }) =
                 </span>
             </div>
             {isOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded shadow-lg max-h-[200px] overflow-y-auto z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border rounded shadow-lg max-h-[300px] overflow-y-auto z-50">
                     {options.map((option) => (
                         <div
                             key={option.value}

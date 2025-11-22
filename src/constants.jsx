@@ -1,5 +1,4 @@
-import Audi from "../public/car-logos/audi.svg";
-import Isuzu from "../public/car-logos/isuzu.svg";
+import Suzuki from "../public/car-logos/suzuki.svg";
 import Benz from "../public/car-logos/benz.svg";
 import Nissan from "../public/car-logos/nissan.svg";
 import Toyota from "../public/car-logos/toyota.svg";
@@ -8,6 +7,8 @@ import Ford from "../public/car-logos/ford.svg";
 import Honda from "../public/car-logos/honda.svg";
 import Hyundai from "../public/car-logos/hyundai.svg";
 import Skoda from "../public/car-logos/skoda.svg";
+import Mahindra from "../public/car-logos/mahindra.svg";
+import Tata from "../public/car-logos/tata.svg";
 import { LiaCalendarCheck } from "react-icons/lia";
 import { BsFuelPump } from "react-icons/bs";
 import { MdSpeed } from "react-icons/md";
@@ -42,34 +43,24 @@ export const OVERVIEW_ICON_MAP = {
 
 export const LOGOS = [
     {
-        id: "audi",
-        name: "Audi",
-        logo: Audi,
+        id: "tata",
+        name: "Tata",
+        logo: Tata,
     },
     {
-        id: "isuzu",
-        name: "Isuzu",
-        logo: Isuzu,
+        id: "suzuki",
+        name: "suzuki",
+        logo: Suzuki,
     },
     {
-        id: "benz",
-        name: "Benz",
-        logo: Benz,
-    },
-    {
-        id: "nissan",
-        name: "Nissan",
-        logo: Nissan,
+        id: 'mahindra',
+        name: 'Mahindra',
+        logo: Mahindra
     },
     {
         id: "toyota",
         name: "Toyota",
         logo: Toyota,
-    },
-    {
-        id: "volvo",
-        name: "Volvo",
-        logo: Volvo,
     },
     {
         id: "ford",
@@ -87,9 +78,24 @@ export const LOGOS = [
         logo: Hyundai,
     },
     {
+        id: "nissan",
+        name: "Nissan",
+        logo: Nissan,
+    },
+    {
         id: "skoda",
         name: "Skoda",
         logo: Skoda,
+    },
+    {
+        id: "benz",
+        name: "Benz",
+        logo: Benz,
+    },
+    {
+        id: "volvo",
+        name: "Volvo",
+        logo: Volvo,
     },
 ];
 

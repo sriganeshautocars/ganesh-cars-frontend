@@ -87,6 +87,10 @@ const CarDetails = () => {
         setImageIndex(imageIndex - 1);
     };
 
+    const getWhatsappText = (car) => {
+        return encodeURI(`Hello, I am interested in the car ${car?.reg_year} ${car?.brand} ${car?.name} ${car?.variant} listed at ₹${getNumberInStringFormat(car?.price)}. Please provide more details.`)
+    }
+
     return (
         <div className="w-full h-auto grid grid-cols-10 gap-2 py-4">
             <div className="col-span-6 grid gap-6">
@@ -270,7 +274,13 @@ const CarDetails = () => {
                 </div>
                 <p className="flex items-center gap-x-2"><GrLocation /><span>{carDetails?.location}</span></p>
                 <p className="font-semibold text-2xl">{`₹ ${getNumberInStringFormat(carDetails?.price)}`}</p>
-                <button className="w-full px-10 py-3 bg-blue-800 text-xl text-white rounded-lg cursor-pointer hover:bg-blue-900">Contact For Booking</button>
+                <a
+                    href={`https://api.whatsapp.com/send?phone=919901103469&text=${getWhatsappText(carDetails)}`}
+                    target="_blank"
+                    className="w-full px-10 py-3 bg-blue-800 text-xl text-white text-center rounded-lg cursor-pointer hover:bg-blue-900"
+                >
+                    Contact For Booking
+                </a>
             </div>
         </div>
     );

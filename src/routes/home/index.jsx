@@ -13,6 +13,7 @@ const Home = () => {
     const [selectedBudgetTab, setSelectedBudgetTab] = useState(BUDGET_TAB_OPTIONS[0]);
     const [selectedOwnershipTab, setSelectedOwnershipTab] = useState(OWNERSHIP_TAB_OPTIONS[0])
     const [selectedFuelTypeTab, setSelectedFuelTypeTab] = useState(FUEL_TYPE_TAB_OPTIONS[0])
+    const [searchQuery, setSearchQuery] = useState("");
 
     const { allCars } = useCarDataStore();
 
@@ -42,6 +43,17 @@ const Home = () => {
         return review
     }
 
+    const handleKeydown = (e) => {
+        if (e.key === "Enter") {
+            handleFilterNavigation(searchQuery);
+        }
+    }
+
+    const handleFilterNavigation = (value) => {
+        navigate(`/listing?search=${value}`);
+    }
+
+
     return (
         <div className="w-full flex flex-col items-center justify-start">
             <div className="flex flex-col items-start justify-start w-full">
@@ -67,18 +79,20 @@ const Home = () => {
                 <div className="hidden sm:flex flex-col gap-y-4 items-center justify-center w-full">
                     <input
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search by car name or brand..."
                         className="w-full p-3 rounded-2xl border border-gray-300 outline-indigo-400"
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleKeydown}
                     />
                     <div className="flex items-center gap-x-6">
                         {LOGOS.map((logo, index) => {
                             return (
                                 <div className="px-2 py-1.5 rounded-lg bg-gray-300 cursor-pointer" key={index}>
                                     <img
-
                                         src={logo?.logo}
                                         alt="image"
-                                        className="w-10 h-auto"
+                                        className="w-10 h-10 object-contain"
+                                        onClick={() => handleFilterNavigation(logo?.id)}
                                     />
                                 </div>
                             );

@@ -1,4 +1,5 @@
 import { useCarDataStore } from '../../store/useAppStore';
+import { Dropdown } from '../Dropdown';
 
 const SortCars = () => {
     // Select each piece of state individually for stability
@@ -17,20 +18,12 @@ const SortCars = () => {
     }
 
     return (
-        <div className="mb-4 sm:mb-0">
-            <label htmlFor="sort-cars" className="sr-only">Sort cars by</label>
-            <select
-                id="sort-cars"
-                value={selectedSort}
+        <div className="w-52 mb-4 sm:mb-0">
+            <Dropdown
+                options={sortOptions}
+                selectedOption={selectedSort}
                 onChange={handleSortChange}
-                className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-            >
-                {sortOptions.map(option => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
+            />
         </div>
     );
 };
