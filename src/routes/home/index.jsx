@@ -45,9 +45,12 @@ const Home = () => {
     return (
         <div className="w-full flex flex-col items-center justify-start">
             <div className="flex flex-col items-start justify-start w-full">
-                <div className="w-full relative flex items-start h-[70vh]">
+                <div className="w-full flex flex-col items-center justify-start sm:hidden h-fit">
+                    <img src={Car} alt="image" className="w-full h-auto" />
+                </div>
+                <div className="w-full relative hidden sm:flex flex-row items-start h-[70vh]">
                     <div className="flex flex-col gap-y-10 mt-10 mb-20">
-                        <h3 className="text-5xl font-bold text-center">
+                        <h3 className="hidden sm:block text-5xl font-bold text-center">
                             Welcome to Ganesh Cars
                         </h3>
                         <p className="text-center flex flex-col items-start gap-y-2 text-7xl font-semibold">
@@ -55,13 +58,13 @@ const Home = () => {
                             <span>Dream Car to</span>
                             <span>Home</span>
                         </p>
-                        <button className="px-10 py-3 bg-blue-500 text-xl text-white hover:bg-blue-600 rounded-md w-fit cursor-pointer" onClick={handleViewAllCarsClick}>Explore Now</button>
+                        <button className="px-10 py-3 bg-blue-500 text-xl text-white hover:bg-blue-600 rounded-md w-fit h-fit cursor-pointer" onClick={handleViewAllCarsClick}>Explore Now</button>
                     </div>
                     <div className="h-full flex items-center justify-center">
                         <img src={Car} alt="image" className="h-full w-auto" />
                     </div>
                 </div>
-                <div className="flex flex-col gap-y-4 items-center justify-center w-full">
+                <div className="hidden sm:flex flex-col gap-y-4 items-center justify-center w-full">
                     <input
                         type="text"
                         placeholder="Search"
@@ -123,11 +126,11 @@ const Home = () => {
                 </div>
                 <div className="w-full my-4">
                     <h3 className="font-bold text-xl">Customer Testimonials</h3>
-                    <div className="flex items-center justify-stretch gap-x-2 py-2">
+                    <div className="flex flex-col sm:flex-row items-center justify-stretch gap-y-2 sm:gap-x-2 py-2">
                         {
                             TESTIMONIALS.slice(0, 4).map((testimonial, index) => {
                                 return (
-                                    <div className="w-72 h-auto border border-gray-300 rounded-lg overflow-hidden flex flex-col items-start justify-start" key={index}>
+                                    <div className="w-full sm:w-72 h-auto border border-gray-300 rounded-lg overflow-hidden flex flex-col items-start justify-start" key={index}>
                                         <img
                                             src={testimonial?.image}
                                             className="w-full h-48 object-cover"

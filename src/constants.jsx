@@ -380,7 +380,7 @@ export const DROPDOWN_VALUES_MAP = {
     // brand values
     audi: "Audi",
     isuzu: "Isuzu",
-    benz: "Benz",
+    benz: "Mercedes Benz",
     nissan: "Nissan",
     toyota: "Toyota",
     volvo: "Volvo",
@@ -394,6 +394,15 @@ export const DROPDOWN_VALUES_MAP = {
     renault: "Renault",
     bmw: "BMW",
     jaguar: "Jaguar",
+    volkswagen: "Volkswagen",
+    mitsubishi: "Mitsubishi",
+    'land-rover': "Land Rover",
+    mg: "MG",
+    suzuki: "Suzuki",
+    chevrolet: "Chevrolet",
+    fiat: "Fiat",
+    jeep: "Jeep",
+    maruti: "Maruti",
 
     // Tyre condition values
     new: "New",
