@@ -31,7 +31,26 @@ export const basicData = [
     { label: "Variant", name: "variant", placeHolder: "Eg. SX(O) Turbo" },
     { label: "KM Driven", name: "km_driven", isNumber: true, placeHolder: "Eg. 45,000" },
     { label: "Fuel Type", name: "fuel_type", placeHolder: "Eg. Petrol", isDropdown: true, options: [{ label: 'Petrol', value: 'petrol' }, { label: 'Diesel', value: 'diesel' }, { label: 'Electric', value: 'electric' }, { label: 'Hybrid', value: 'hybrid' }, { label: 'CNG', value: 'cng' }] },
-    { label: "Body Type", name: "body_type", placeHolder: "Eg. SUV" },
+    {
+        label: "Body Type", name: "body_type", placeHolder: "Eg. SUV", isDropdown: true, options: [
+            { label: "Hatchback", value: "hatchback" },
+            { label: "Sedan", value: "sedan" },
+            { label: "SUV (Sports Utility Vehicle)", value: "suv" },
+            { label: "Compact SUV", value: "compact-suv" },
+            { label: "Coupe", value: "coupe" },
+            { label: "Convertible", value: "convertible" },
+            { label: "Wagon / Estate", value: "wagon-estate" },
+            { label: "MUV (Multi Utility Vehicle)", value: "muv-multi-utility-vehicle" },
+            { label: "MPV (Multi Purpose Vehicle)", value: "mpv-multi-purpose-vehicle" },
+            { label: "Crossover", value: "crossover" },
+            { label: "Pickup Truck", value: "pickup-truck" },
+            { label: "Van / Minivan", value: "van" },
+            { label: "Sports Car", value: "sports-car" },
+            { label: "Luxury Sedan", value: "luxury-sedan" },
+            { label: "Electric Hatchback", value: "electric-hatchback" },
+            { label: "Electric SUV", value: "electric-suv" }
+        ]
+    },
     {
         label: "Transmission Type", name: "transmission_type", placeHolder: "Eg. Automatic", isDropdown: true, options: [
             { label: "Manual", value: "manual" },
@@ -49,9 +68,19 @@ export const basicData = [
     { label: "Price", name: "price", isNumber: true, placeHolder: "Eg. 12,50,000" },
     { label: "Location", name: "location", placeHolder: "Eg. Bangalore" },
     { label: "Insurance", name: "insurance", placeHolder: "Eg. Valid till Dec 2025" },
-    { label: "No of Seats", name: "no_of_seats", isNumber: true, placeHolder: "Eg. 5" },
+    {
+        label: "No of Seats", name: "no_of_seats", placeHolder: "Eg. 5", isDropdown: true, options: [
+            { label: "2 Seater", value: 2 },
+            { label: "4 Seater", value: 4 },
+            { label: "5 Seater", value: 5 },
+            { label: "6 Seater", value: 6 },
+            { label: "7 Seater", value: 7 },
+            { label: "8 Seater", value: 8 },
+            { label: "9 Seater", value: 9 }
+        ]
+    },
     { label: "Reg Number", name: "reg_number", placeHolder: "Eg. KA03AB1234" },
-    { label: "Ownership", name: "ownership", isNumber: true, placeHolder: "Eg. 2" },
+    { label: "Ownership", name: "ownership", placeHolder: "Eg. 2", isDropdown: true, options: [{ label: '1st', value: 1 }, { label: '2nd', value: 2 }, { label: '3rd', value: 3 }, { label: '4th', value: 4 }, { label: '5th', value: 5 }] },
     { label: "Engine Displacement", name: "engine_displacement", isNumber: true, placeHolder: "Eg. 1497 cc" },
     { label: "Highway Mileage", name: "highway_mileage", isNumber: true, placeHolder: "Eg. 18 kmpl" },
     { label: "Make Year", name: "make_year", isNumber: true, placeHolder: "Eg. 2020" },
@@ -557,7 +586,6 @@ export const specificationsFields = {
         { label: "Width", value: "width", placeHolder: "Eg. 1790 mm" },
         { label: "Height", value: "height", placeHolder: "Eg. 1630 mm" },
         { label: "Bootspace", value: "bootspace", placeHolder: "Eg. 450 L" },
-        { label: "Seating capacity", value: "seating-capacity", placeHolder: "Eg. 5", isDropdown: true, options: [{ label: '5 Seater', value: '5' }, { label: '6 Seater', value: '6' }, { label: '7 Seater', value: '7' }, { label: '8 Seater', value: '8' }] },
         { label: "Ground clearance", value: "ground-clearance", placeHolder: "Eg. 190 mm" },
         { label: "Wheel base", value: "wheel-base", placeHolder: "Eg. 2600 mm" },
         { label: "No of doors", value: "no-of-doors", placeHolder: "Eg. 5", isDropdown: true, options: [{ label: '2 Doors', value: '2' }, { label: '3 Doors', value: '3' }, { label: '4 Doors', value: '4' }, { label: '5 Doors', value: '5' }] },

@@ -5,7 +5,7 @@ export const OverviewItem = (data) => {
     const { icon, title, value, isOwnership = false } = data;
 
     return (
-        <div className="flex items-center justify-start gap-2">
+        <div className="flex items-start justify-start gap-2">
             {OVERVIEW_ICON_MAP?.[icon]}
             <div className="flex flex-col items-start">
                 <p className="text-xs font-medium text-gray-500">{title}</p>

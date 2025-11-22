@@ -19,6 +19,7 @@ import { MdOutlineAirlineSeatReclineExtra } from "react-icons/md";
 import { PiBuildings } from "react-icons/pi";
 import { GoShieldCheck } from "react-icons/go";
 import { IoLocationOutline } from "react-icons/io5";
+import { IoCarSportOutline } from "react-icons/io5";
 
 export const OVERVIEW_ICON_MAP = {
     registration: <LiaCalendarCheck size={24} className="text-gray-900" />,
@@ -36,6 +37,7 @@ export const OVERVIEW_ICON_MAP = {
     reg_number: <PiBuildings size={24} className="text-gray-900" />,
     insurance: <GoShieldCheck size={24} className="text-gray-900" />,
     location: <IoLocationOutline size={24} className="text-gray-900" />,
+    body_type: <IoCarSportOutline size={24} className="text-gray-900" />,
 };
 
 export const LOGOS = [
@@ -403,6 +405,34 @@ export const DROPDOWN_VALUES_MAP = {
     fiat: "Fiat",
     jeep: "Jeep",
     maruti: "Maruti",
+
+    // Body type values
+    hatchback: "Hatchback",
+    sedan: "Sedan",
+    suv: "SUV",
+    'compact-suv': "Compact SUV",
+    coupe: "Coupe",
+    convertible: "Convertible",
+    'wagon-estate': "Wagon / Estate",
+    'muv-multi-utility-vehicle': "MUV",
+    'mpv-multi-purpose-vehicle': "MPV",
+    crossover: "Crossover",
+    'pickup-truck': "Pickup Truck",
+    van: "Van / Minivan",
+    'sports-car': "Sports Car",
+    'luxury-sedan': "Luxury Sedan",
+    'electric-hatchback': "Electric Hatchback",
+    'electric-suv': "Electric SUV",
+
+
+    // Seat capacity values
+    "2-seater": "2 Seater",
+    "4-seater": "4 Seater",
+    "5-seater": "5 Seater",
+    "6-seater": "6 Seater",
+    "7-seater": "7 Seater",
+    "8-seater": "8 Seater",
+    "9-seater": "9 Seater",
 
     // Tyre condition values
     new: "New",

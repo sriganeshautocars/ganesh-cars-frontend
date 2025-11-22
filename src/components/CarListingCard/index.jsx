@@ -3,6 +3,7 @@ import { GrLocation } from "react-icons/gr";
 import { FcLike } from "react-icons/fc";
 import { GoHeart } from "react-icons/go";
 import { useEffect, useState } from "react";
+import { DROPDOWN_VALUES_MAP } from "../../constants";
 
 export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
     const [isLiked, setIsLiked] = useState(false);
@@ -72,10 +73,10 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
                         <p className="font-semibold text-sm">{`₹ ${getNumberInStringFormat(carDetails?.price)}`}</p>
                     </div>
                 </div>
-                <div className="flex items-center justify-start gap-2 px-3">
+                <div className="flex items-center justify-start flex-wrap gap-2 px-3">
                     <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{`${getNumberInStringFormat(carDetails?.km_driven)} km`}</span>
-                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{carDetails?.fuel_type}</span>
-                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{carDetails?.transmission_type}</span>
+                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{DROPDOWN_VALUES_MAP[carDetails?.fuel_type] || carDetails?.fuel_type}</span>
+                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md truncate inline-block max-w-18" title={DROPDOWN_VALUES_MAP[carDetails?.transmission_type] || carDetails?.transmission_type}>{DROPDOWN_VALUES_MAP[carDetails?.transmission_type] || carDetails?.transmission_type}</span>
                     <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md text-center">{`${getOrdinalNumber(carDetails?.ownership)} owner`}</span>
                 </div>
                 <div className="flex items-center justify-start gap-2 text-sm bg-gray-200 py-1 px-3">

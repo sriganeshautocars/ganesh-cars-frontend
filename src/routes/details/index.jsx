@@ -190,6 +190,11 @@ const CarDetails = () => {
                             value={carDetails?.no_of_seats}
                         />
                         <OverviewItem
+                            icon="body_type"
+                            title="Body type"
+                            value={DROPDOWN_VALUES_MAP[carDetails?.body_type] || carDetails?.body_type}
+                        />
+                        <OverviewItem
                             icon="reg_number"
                             title="Reg number"
                             value={carDetails?.reg_number}
@@ -257,10 +262,10 @@ const CarDetails = () => {
                         {isLiked ? <FcLike size={24} /> : <GoHeart size={24} />}
                     </div>
                 </div>
-                <div className="w-full flex items-center justify-start gap-2">
+                <div className="w-full flex flex-wrap items-center justify-start gap-2">
                     <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{`${getNumberInLocalString(carDetails?.km_driven)} km`}</span>
-                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{carDetails?.fuel_type}</span>
-                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{carDetails?.transmission_type}</span>
+                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{DROPDOWN_VALUES_MAP[carDetails?.fuel_type] || carDetails?.fuel_type}</span>
+                    <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md">{DROPDOWN_VALUES_MAP[carDetails?.transmission_type] || carDetails?.transmission_type}</span>
                     <span className="min-w-12 px-1 py-0.5 bg-blue-100 rounded-md text-center">{`${getOrdinalNumber(carDetails?.ownership)} Owner`}</span>
                 </div>
                 <p className="flex items-center gap-x-2"><GrLocation /><span>{carDetails?.location}</span></p>
