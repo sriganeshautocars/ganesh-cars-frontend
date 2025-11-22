@@ -9,13 +9,12 @@ import { Footer } from './components/Footer'
 
 import './App.css'
 
-
-
 function App() {
 
   return (
-    <><Header />
-      <div className='max-w-[1280px] mx-auto px-4 min-h-[calc(100vh-160px)]'>
+    <div className='w-full max-w-screen'>
+      <Header />
+      <div className='w-full sm:max-w-[1280px] mx-auto px-4 min-h-[calc(100vh-160px)]'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -26,7 +25,7 @@ function App() {
 
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

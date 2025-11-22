@@ -18,10 +18,11 @@ const SortCars = () => {
     }
 
     return (
-        <div className="w-52 mb-4 sm:mb-0">
+        <div className="w-52">
             <Dropdown
                 options={sortOptions}
                 selectedOption={selectedSort}
+                defaultValue={sortOptions[2]?.value}
                 onChange={handleSortChange}
             />
         </div>

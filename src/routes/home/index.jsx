@@ -76,7 +76,7 @@ const Home = () => {
                         <img src={Car} alt="image" className="h-full w-auto" />
                     </div>
                 </div>
-                <div className="hidden sm:flex flex-col gap-y-4 items-center justify-center w-full">
+                <div className="flex flex-col gap-y-4 items-center justify-center w-full">
                     <input
                         type="text"
                         placeholder="Search by car name or brand..."
@@ -84,7 +84,7 @@ const Home = () => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={handleKeydown}
                     />
-                    <div className="flex items-center gap-x-6">
+                    <div className="grid grid-cols-5 sm:flex flex-wrap items-center gap-2 sm:gap-6">
                         {LOGOS.map((logo, index) => {
                             return (
                                 <div className="px-2 py-1.5 rounded-lg bg-gray-300 cursor-pointer" key={index}>
@@ -97,7 +97,7 @@ const Home = () => {
                                 </div>
                             );
                         })}
-                        <button className="px-3 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" onClick={handleViewAllCarsClick}>
+                        <button className="hidden sm:block px-3 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" onClick={handleViewAllCarsClick}>
                             View All Cars
                         </button>
                     </div>

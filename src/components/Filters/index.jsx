@@ -2,7 +2,9 @@
 import { useCarDataStore } from "../../store/useAppStore"; // Adjust path as needed
 import { getPriceInLocalString } from '../../utils';
 
-const CarFilters = () => {
+import { BiArrowBack } from "react-icons/bi";
+
+const CarFilters = ({ handleClose }) => {
     const {
         budget,
         selectedBrands,
@@ -68,9 +70,13 @@ const CarFilters = () => {
 
 
     return (
-        <div className="border border-gray-300 p-5 w-full mr-5 h-auto rounded-md">
-            <h3 className="text-xl font-semibold mb-4">Filters</h3>
-
+        <div className="border border-gray-300 p-5 w-full m-0 sm:mr-5 h-auto rounded-md">
+            <div className="flex items-center justify-between">
+                <h3 className="flex gap-x-2 items-center text-xl font-semibold mb-4">
+                    <span className="block sm:hidden" onClick={handleClose}><BiArrowBack /></span>
+                    Filters
+                </h3>
+            </div>
             {/* Budget Filter */}
             <div className="mb-6">
                 <h4 className="text-lg font-medium mb-2">Budget (₹)</h4>

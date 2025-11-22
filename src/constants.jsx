@@ -2,7 +2,6 @@ import Suzuki from "../public/car-logos/suzuki.svg";
 import Benz from "../public/car-logos/benz.svg";
 import Nissan from "../public/car-logos/nissan.svg";
 import Toyota from "../public/car-logos/toyota.svg";
-import Volvo from "../public/car-logos/volvo.svg";
 import Ford from "../public/car-logos/ford.svg";
 import Honda from "../public/car-logos/honda.svg";
 import Hyundai from "../public/car-logos/hyundai.svg";
@@ -91,11 +90,6 @@ export const LOGOS = [
         id: "benz",
         name: "Benz",
         logo: Benz,
-    },
-    {
-        id: "volvo",
-        name: "Volvo",
-        logo: Volvo,
     },
 ];
 
