@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { BUDGET_TAB_OPTIONS, FUEL_TYPE_TAB_OPTIONS, LOGOS, OWNERSHIP_TAB_OPTIONS, TESTIMONIALS } from "../../constants";
-import Car from "../../../public/innova.png";
+import Car from "/innova.png";
 
 import { Tabs } from "../../components/Tab";
 import { useFetchCars } from "../../hooks/useFetchCars";
@@ -77,6 +77,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-y-4 items-center justify-center w-full">
+                    <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md sm:hidden" onClick={handleViewAllCarsClick}>View All Cars</button>
                     <input
                         type="text"
                         placeholder="Search by car name or brand..."

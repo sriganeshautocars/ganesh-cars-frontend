@@ -4,7 +4,7 @@ export const SpecificationList = (props) => {
     const { specificationList = {}, specificationCategory = "" } = props;
 
     return (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {Object.keys(specificationList)?.map((item, index) => {
                 console.log(item, specificationList?.[item]);
                 return (
