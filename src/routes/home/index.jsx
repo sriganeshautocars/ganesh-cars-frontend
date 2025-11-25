@@ -1,19 +1,20 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { BUDGET_TAB_OPTIONS, FUEL_TYPE_TAB_OPTIONS, LOGOS, OWNERSHIP_TAB_OPTIONS, TESTIMONIALS } from "../../constants";
-import Car from "/innova.png";
+import { BUDGET_TAB_OPTIONS, FUEL_TYPE_TAB_OPTIONS, OWNERSHIP_TAB_OPTIONS, TESTIMONIALS } from "../../constants";
 
 import { Tabs } from "../../components/Tab";
 import { useFetchCars } from "../../hooks/useFetchCars";
 import { useCarDataStore } from "../../store/useAppStore";
+import { BrandList } from "./components/BrandList";
+import { HeroSection } from "./components/HeroSection";
+import { ContactUs } from "./components/ContactUs";
 
 
 const Home = () => {
     const [selectedBudgetTab, setSelectedBudgetTab] = useState(BUDGET_TAB_OPTIONS[0]);
     const [selectedOwnershipTab, setSelectedOwnershipTab] = useState(OWNERSHIP_TAB_OPTIONS[0])
     const [selectedFuelTypeTab, setSelectedFuelTypeTab] = useState(FUEL_TYPE_TAB_OPTIONS[0])
-    const [searchQuery, setSearchQuery] = useState("");
 
     const { allCars } = useCarDataStore();
 
@@ -43,66 +44,11 @@ const Home = () => {
         return review
     }
 
-    const handleKeydown = (e) => {
-        if (e.key === "Enter") {
-            handleFilterNavigation(searchQuery);
-        }
-    }
-
-    const handleFilterNavigation = (value) => {
-        navigate(`/listing?search=${value}`);
-    }
-
-
     return (
         <div className="w-full flex flex-col items-center justify-start">
             <div className="flex flex-col items-start justify-start w-full">
-                <div className="w-full flex flex-col items-center justify-start sm:hidden h-fit">
-                    <img src={Car} alt="image" className="w-full h-auto" />
-                </div>
-                <div className="w-full relative hidden sm:flex flex-row items-start h-[70vh]">
-                    <div className="flex flex-col gap-y-10 mt-10 mb-20">
-                        <h3 className="hidden sm:block text-5xl font-bold text-center">
-                            Welcome to Ganesh Cars
-                        </h3>
-                        <p className="text-center flex flex-col items-start gap-y-2 text-7xl font-semibold">
-                            <span>Drive your</span>
-                            <span>Dream Car to</span>
-                            <span>Home</span>
-                        </p>
-                        <button className="px-10 py-3 bg-blue-500 text-xl text-white hover:bg-blue-600 rounded-md w-fit h-fit cursor-pointer" onClick={handleViewAllCarsClick}>Explore Now</button>
-                    </div>
-                    <div className="h-full flex items-center justify-center">
-                        <img src={Car} alt="image" className="h-full w-auto" />
-                    </div>
-                </div>
-                <div className="flex flex-col gap-y-4 items-center justify-center w-full">
-                    <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md sm:hidden" onClick={handleViewAllCarsClick}>View All Cars</button>
-                    <input
-                        type="text"
-                        placeholder="Search by car name or brand..."
-                        className="w-full p-3 rounded-2xl border border-gray-300 outline-indigo-400"
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onKeyDown={handleKeydown}
-                    />
-                    <div className="grid grid-cols-5 sm:flex flex-wrap items-center gap-2 sm:gap-6">
-                        {LOGOS.map((logo, index) => {
-                            return (
-                                <div className="px-2 py-1.5 rounded-lg bg-gray-300 cursor-pointer" key={index}>
-                                    <img
-                                        src={logo?.logo}
-                                        alt="image"
-                                        className="w-10 h-10 object-contain"
-                                        onClick={() => handleFilterNavigation(logo?.id)}
-                                    />
-                                </div>
-                            );
-                        })}
-                        <button className="hidden sm:block px-3 py-3 rounded-md bg-blue-600 text-white hover:bg-blue-700 cursor-pointer" onClick={handleViewAllCarsClick}>
-                            View All Cars
-                        </button>
-                    </div>
-                </div>
+                <HeroSection handleViewAllCars={handleViewAllCarsClick} />
+                <BrandList handleViewAllCars={handleViewAllCarsClick} />
                 <div className="w-full mt-4">
                     <h3 className="font-bold text-xl">Cars by Budget</h3>
                     <Tabs
@@ -172,6 +118,7 @@ const Home = () => {
                         }
                     </div>
                 </div>
+                <ContactUs />
             </div>
         </div>
     );

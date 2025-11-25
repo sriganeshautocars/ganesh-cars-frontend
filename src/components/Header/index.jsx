@@ -1,3 +1,5 @@
+import { WHATSAPP_API_URL } from "../../constants";
+
 export const Header = () => {
 
     const handleSellClick = () => {
@@ -19,7 +21,7 @@ export const Header = () => {
             </a>
             <div className="flex items-center gap-2">
                 <a
-                    href="https://api.whatsapp.com/send?phone=919901103469&text=Hi%2C%20I%20am%20interested%20in%20one%20of%20your%20cars"
+                    href={`${WHATSAPP_API_URL}&text=Hi%2C%20I%20am%20interested%20in%20one%20of%20your%20cars`}
                     target="_blank"
                     className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
                 >

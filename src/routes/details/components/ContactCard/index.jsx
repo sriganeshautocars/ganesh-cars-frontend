@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 import { GrLocation } from "react-icons/gr"
 import { FcLike } from "react-icons/fc"
-import { DROPDOWN_VALUES_MAP } from "../../../../constants"
+import { DROPDOWN_VALUES_MAP, WHATSAPP_API_URL } from "../../../../constants"
 import { getNumberInLocalString, getNumberInStringFormat, getOrdinalNumber } from "../../../../utils"
 import { GoHeart } from "react-icons/go"
 
@@ -66,7 +66,7 @@ export const ContactCard = ({ carDetails }) => {
             <p className="flex items-center gap-x-2"><GrLocation /><span>{carDetails?.location}</span></p>
             <p className="font-semibold text-2xl">{`₹ ${getNumberInStringFormat(carDetails?.price)}`}</p>
             <a
-                href={`https://api.whatsapp.com/send?phone=919901103469&text=${getWhatsappText(carDetails)}`}
+                href={`${WHATSAPP_API_URL}&text=${getWhatsappText(carDetails)}`}
                 target="_blank"
                 className="w-full px-10 py-3 bg-blue-800 text-xl text-white text-center rounded-lg cursor-pointer hover:bg-blue-900"
             >

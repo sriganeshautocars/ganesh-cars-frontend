@@ -14,7 +14,7 @@ export const Footer = () => {
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Explore</h3>
-            <span>Buy used car</span>
+            <span>Buy pre-owned car</span>
             <span>Sell used car</span>
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">
@@ -28,7 +28,7 @@ export const Footer = () => {
             <span className="font-semibold text-lg">Social Links</span>
             <div className="flex flex-col sm:flex-row items-center justify-start gap-y-2 sm:gap-x-2">
                 <a href="https://www.facebook.com/" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><ImFacebook2 /></a>
-                <a href="https://www.instagram.com/" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><GrInstagram /></a>
+                <a href="https://www.instagram.com/sri_ganesh_auto_cars/" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><GrInstagram /></a>
                 <a href="https://www.twitter.com/" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><BsTwitterX /></a>
             </div>
 
