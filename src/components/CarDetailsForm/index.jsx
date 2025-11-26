@@ -164,8 +164,6 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
         }
     }
 
-    console.log('specs', specs);
-
     return (
         <div className="p-4 max-h-[90vh] overflow-y-auto w-[80vw] mx-auto bg-white rounded shadow">
             {/* Basic details */}
@@ -195,7 +193,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                 }
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {basicData.map(({ label, name, isNumber = false, placeHolder = '', isDropdown = false, options = [] }) => (
                     <div key={name} className="flex flex-col">
                         {isDropdown ? (
@@ -225,7 +223,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                 ))}
             </div>
             {/* Images */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
                 {["interior", "exterior", "tyres"].map((type) => (
                     <div key={type} className="flex flex-col">
                         <label className="text-sm font-medium mb-1 capitalize">
@@ -300,7 +298,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                             {" "}
                             {category.replace(/-/g, " ")}
                         </h4>
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-4">
                             {items?.map(({ label, value }) => {
 
                                 return <div key={value} className="flex items-center gap-2">
@@ -343,7 +341,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                         <h2 className="text-lg font-semibold mb-4 capitalize">
                             {sectionKey.replace(/-/g, " ")}
                         </h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {fields.map(({ label, value, placeHolder = '', isDropdown = false, options = [] }) => (
                                 <div key={value} className="flex flex-col">
                                     {

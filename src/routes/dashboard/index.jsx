@@ -5,11 +5,13 @@ import { Modal } from "../../components/Modal";
 import CarDetailsForm from "../../components/CarDetailsForm";
 import { useCarDataStore } from "../../store/useAppStore";
 import { deleteCar, getCarList } from "../../api";
+import { DeleteConfirmContent } from "./components/DeleteConfirmContent";
 
 
 const Dashboard = () => {
     const [showModal, setShowModal] = useState(false);
     const [selectedCarDetails, setSelectedCarDetails] = useState({});
+    const [selectedCarToDelete, setSelectedCarToDelete] = useState(null);
 
     const { allCars, setAllCars } = useCarDataStore();
 
@@ -56,34 +58,34 @@ const Dashboard = () => {
         <CheckAuth>
             <div className="w-full py-4">
                 <div className="w-full flex items-center justify-between my-4">
-                    <h3 className="text-3xl font-semibold">Car List</h3>
-                    <button className="px-3 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => setShowModal(true)}>Add New Car</button>
+                    <h3 className="text-2xl sm:text-3xl font-semibold">Car List</h3>
+                    <button className="px-2 sm:px-3 py-1 sm:py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => setShowModal(true)}>Add New Car</button>
                 </div>
-                <div className="grid grid-cols-10 gap-2 border-b-2 border-gray-400 p-2 mb-2">
-                    <div className="col-span-1 font-medium">Car Id</div>
+                <div className="grid grid-cols-9 sm:grid-cols-10 gap-2 border-b-2 border-gray-400py-2 sm:p-2 mb-2">
+                    <div className="col-span-1 font-medium">Id</div>
                     <div className="col-span-2 font-medium">Image</div>
-                    <div className="col-span-1 font-medium">Name</div>
-                    <div className="col-span-2 font-medium">Reg No</div>
-                    <div className="col-span-2 font-medium">Location</div>
-                    <div />
-                    <div />
+                    <div className="col-span-2 sm:col-span-1 font-medium">Name</div>
+                    <div className="hidden sm:block col-span-2 font-medium">Reg No</div>
+                    <div className="hidden sm:block col-span-2 font-medium">Location</div>
+                    <div className="col-span-2 sm:col-span-1" />
+                    <div className="col-span-2 sm:col-span-1" />
                 </div>
                 {allCars?.map((car, index) => (
-                    <div className="grid grid-cols-10 items-center gap-2 border-b-2 border-gray-300 p-2" key={index}>
+                    <div className="grid grid-cols-9 sm:grid-cols-10 items-center gap-2 border-b-2 border-gray-300 py-2 sm:p-2" key={index}>
                         <div className="col-span-1">{car?.id}</div>
                         <div className="col-span-2 flex items-center justify-start">
-                            <img src={car?.thumbnail} alt={car?.name} className="h-24" />
+                            <img src={car?.thumbnail} alt={car?.name} className="w-full h-auto sm:h-24" />
                         </div>
-                        <div className="col-span-1">{car?.name}</div>
-                        <div className="col-span-2">{car?.reg_number}</div>
-                        <div className="col-span-2">{car?.location}</div>
-                        <button className="h-fit px-2 py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => {
+                        <div className="col-span-2 sm:col-span-1 w-full text-ellipsis overflow-hidden">{car?.name}</div>
+                        <div className="hidden sm:block col-span-2">{car?.reg_number}</div>
+                        <div className="hidden sm:block col-span-2">{car?.location}</div>
+                        <button className="col-span-2 sm:col-span-1 h-fit px-1 sm:px-2 py-0.5 sm:py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => {
                             setSelectedCarDetails(car);
                             setShowModal(!showModal);
                         }}>
                             Update
                         </button>
-                        <button className="h-fit px-2 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700" onClick={() => handleDeleteCar(car?.id)}>
+                        <button className=" col-span-2 sm:col-span-1 h-fit px-1 sm:px-2 py-0.5 sm:py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700" onClick={() => setSelectedCarToDelete(car)}>
                             Delete
                         </button>
                     </div>
@@ -92,6 +94,17 @@ const Dashboard = () => {
             {
                 showModal && (
                     <Modal content={<CarDetailsForm carDetails={selectedCarDetails} handleClose={handleClose} />} handleClose={handleCloseModal} />
+                )
+            }
+            {
+                selectedCarToDelete?.id && (
+                    <Modal
+                        content={<DeleteConfirmContent carName={selectedCarToDelete?.name} onConfirm={() => {
+                            handleDeleteCar(selectedCarToDelete?.id);
+                            setSelectedCarToDelete(null);
+                        }} onCancel={() => setSelectedCarToDelete(null)} />}
+                        handleClose={() => setSelectedCarToDelete(null)}
+                    />
                 )
             }
         </CheckAuth>

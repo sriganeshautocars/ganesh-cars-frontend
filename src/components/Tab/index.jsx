@@ -33,12 +33,12 @@ export const Tabs = (props) => {
                     );
                 })}
             </div>
-            <div className="w-full flex justify-stretch py-2 gap-x-3">
+            <div className="w-full flex justify-stretch py-2 gap-x-3 overflow-y-auto">
                 {tabContent?.length > 0 ? (
                     tabContent?.slice(0, 4)?.map((content) => {
                         return (
                             <div
-                                className="w-64 h-auto border border-gray-300 rounded-lg overflow-hidden"
+                                className="w-64 min-w-64 h-auto border border-gray-300 rounded-lg overflow-hidden"
                                 key={content?.id}
                                 title={content?.name}
                             >

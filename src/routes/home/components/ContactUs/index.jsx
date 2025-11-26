@@ -32,9 +32,9 @@ const CONTACT_INFO = {
 
 export const ContactUs = () => {
     return (
-        <div className="w-full">
+        <div className="w-full mb-3 sm:mb-0">
             <h3 className="font-bold text-xl">Contact Us</h3>
-            <div className="w-full grid grid-cols-2 py-2 gap-10">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 py-2 gap-6 sm:gap-10">
                 <MapItem />
                 <div className="flex flex-col items-start justify-start gap-y-3">
                     {

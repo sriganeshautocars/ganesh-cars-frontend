@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 export const CarImages = ({ carDetails }) => {
     const [imageList, setImageList] = useState([]);
@@ -22,11 +23,11 @@ export const CarImages = ({ carDetails }) => {
     };
 
     return (
-        <div className="w-full grid gap-6">
-            <div className="w-full h-96 sm:h-100 rounded-lg relative overflow-hidden">
+        <div className="w-full grid rounded-lg overflow-hidden bg-gray-800">
+            <div className="w-full h-auto sm:h-100 relative overflow-hidden">
                 {imageIndex > 0 && (
                     <div
-                        className="absolute top-[46%] left-2 cursor-pointer h-8 w-8 bg-blue-300 rounded-full flex items-center justify-center"
+                        className="absolute top-[46%] left-2 cursor-pointer h-8 w-8 border-2 border-blue-600 bg-white rounded-full flex items-center justify-center"
                         onClick={handlePrevClick}
                     >
                         <FiChevronLeft size={32} />
@@ -35,29 +36,35 @@ export const CarImages = ({ carDetails }) => {
                 <img
                     src={`${imageList[imageIndex]}`}
                     alt={carDetails?.name}
-                    className="w-full h-full object-contain sm:object-cover"
+                    className={`w-full h-full object-contain sm:object-cover`}
                 />
                 {imageIndex < imageList.length - 1 && (
                     <div
-                        className="absolute top-[46%] right-2 cursor-pointer  h-8 w-8 bg-blue-300 rounded-full flex items-center justify-center"
+                        className="absolute top-[46%] right-2 cursor-pointer h-8 w-8 border-2 border-blue-600 bg-white rounded-full flex items-center justify-center"
                         onClick={handleNextClick}
                     >
                         <FiChevronRight size={32} />
                     </div>
                 )}
-                <div className="w-full absolute z-10 bottom-0 right-0 left-0 flex items-center justify-center gap-x-8 mb-3">
-                    {carDetails?.images?.exterior?.length && <div
-                        className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
-                        onClick={() => setImageList(carDetails?.images?.exterior || [])}
-                    >
-                        <img
-                            src={carDetails?.images?.exterior?.[0]}
-                            alt={carDetails?.name}
-                            className="w-full h-full object-cover"
-                        />
+            </div>
+            <div className="w-full flex items-center justify-center gap-x-8 py-3">
+                {carDetails?.images?.exterior?.length &&
+                    <div>
+                        <div
+                            className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
+                            onClick={() => setImageList(carDetails?.images?.exterior || [])}
+                        >
+                            <img
+                                src={carDetails?.images?.exterior?.[0]}
+                                alt={carDetails?.name}
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                        <p className="text-center text-gray-300">Exterior</p>
                     </div>
-                    }
-                    {carDetails?.images?.interior?.length &&
+                }
+                {carDetails?.images?.interior?.length &&
+                    <div>
                         <div
                             className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
                             onClick={() => setImageList(carDetails?.images?.interior || [])}
@@ -68,8 +75,11 @@ export const CarImages = ({ carDetails }) => {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                    }
-                    {carDetails?.images?.tyres?.length &&
+                        <p className="text-center text-gray-300">Interior</p>
+                    </div>
+                }
+                {carDetails?.images?.tyres?.length &&
+                    <div>
                         <div
                             className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
                             onClick={() => setImageList(carDetails?.images?.tyres || [])}
@@ -80,9 +90,11 @@ export const CarImages = ({ carDetails }) => {
                                 className="w-full h-full object-cover"
                             />
                         </div>
-                    }
-                </div>
+                        <p className="text-center text-gray-300">Tyres</p>
+                    </div>
+                }
             </div>
+
         </div>
     )
 }
