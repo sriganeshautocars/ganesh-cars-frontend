@@ -3,14 +3,23 @@ import { useCarDataStore } from "../store/useAppStore";
 import { useEffect } from "react";
 
 export const useFetchCars = () => {
-    const { setAllCars } = useCarDataStore();
+    const { setAllCars, setIsLoading, filteredCars } = useCarDataStore();
 
     useEffect(() => {
-        getAllCars();
+        if (filteredCars.length === 0) {
+            getAllCars();
+        }
     }, [])
 
     const getAllCars = async () => {
-        const carList = await getCarList();
-        setAllCars(carList)
+        try {
+            setIsLoading(true);
+            const carList = await getCarList();
+            setAllCars(carList)
+        } catch (error) {
+            console.log("Error fetching car list in useFetchCars hook", error);
+        } finally {
+            setIsLoading(false);
+        }
     }
 }

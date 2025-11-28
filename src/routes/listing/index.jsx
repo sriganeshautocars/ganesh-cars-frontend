@@ -6,10 +6,11 @@ import { CarListingCard } from "../..//components/CarListingCard";
 import { useFetchCars } from "../../hooks/useFetchCars";
 import { useMemo, useState } from "react";
 import { FiFilter } from "react-icons/fi";
+import { CarListingCardLoader } from "../../components/Loaders/ListingCardLoader";
 
 const CarListing = () => {
     const [showFilters, setShowFilters] = useState(false);
-    const { filteredCars } = useCarDataStore();
+    const { filteredCars, isLoading } = useCarDataStore();
 
     const params = new URLSearchParams(window.location.search);
     const searchQuery = params.get("search");
@@ -20,8 +21,6 @@ const CarListing = () => {
         }
         return filteredCars;
     }, [filteredCars, searchQuery]);
-
-
 
     const navigate = useNavigate();
 
@@ -61,9 +60,20 @@ const CarListing = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-min gap-2 sm:gap-4">
-                    {finalCarList?.map((car, index) => (
-                        <CarListingCard carDetails={car} key={index} handleOpenCarDetailsPage={() => openCarDetailsPage(car?.id)} />
-                    ))}
+                    {
+                        isLoading ?
+                            Array.from({ length: 6 }).map((_, index) => (
+                                <CarListingCardLoader key={index} />
+                            ))
+                            :
+                            finalCarList?.length > 0
+                                ?
+                                finalCarList?.map((car, index) => (
+                                    <CarListingCard carDetails={car} key={index} handleOpenCarDetailsPage={() => openCarDetailsPage(car?.id)} />
+                                ))
+                                :
+                                <div>No cars found</div>
+                    }
                 </div>
             </div>
         </div>

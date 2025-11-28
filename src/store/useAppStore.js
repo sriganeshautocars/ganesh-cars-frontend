@@ -5,11 +5,11 @@ import { create } from "zustand";
 const sortOptionsList = [
     { value: 'price_asc', label: 'Price: Low to High' },
     { value: 'price_desc', label: 'Price: High to Low' },
-    { value: 'recent', label: 'Recently Added' },      // Needs car.created_at
-    { value: 'km_desc', label: 'KM Driven: High to Low' }, // Needs car.km_driven
-    { value: 'km_asc', label: 'KM Driven: Low to High' },   // Needs car.km_driven
-    { value: 'age_asc', label: 'Car Age: Old to New' },    // Needs car.make_year (year ascending)
-    { value: 'age_desc', label: 'Car Age: New to Old' },   // Needs car.make_year (year descending)
+    { value: 'recent', label: 'Recently Added' },
+    { value: 'km_desc', label: 'KM Driven: High to Low' },
+    { value: 'km_asc', label: 'KM Driven: Low to High' },
+    { value: 'age_asc', label: 'Car Age: Old to New' },
+    { value: 'age_desc', label: 'Car Age: New to Old' },
 ];
 
 const AVAILABLE_COLORS = ['White', 'Black', 'Silver', 'Red', 'Blue', 'Grey', 'Brown', 'Other']; // Predefined, as not in CARS data
@@ -31,6 +31,7 @@ const initialFilterState = {
     makeYear: { min: 1990, max: new Date().getFullYear() },
     selectedSort: 'default', // Initial sort option
     sortOptions: sortOptionsList,
+    isLoading: false
 };
 
 const applyFilters = (cars, filters) => {
@@ -256,4 +257,8 @@ export const useCarDataStore = create((set, get) => ({
         set({ allCars: cars, filteredCars: cars, initialMakeYearRange: { min: minMakeYear, max: maxMakeYear }, availableBrands, availableBodyTypes, availableOwnerships, availableSeats });
         get()._updateFilteredCars();
     },
+
+    setIsLoading: (isLoading) => {
+        set({ isLoading });
+    }
 }));

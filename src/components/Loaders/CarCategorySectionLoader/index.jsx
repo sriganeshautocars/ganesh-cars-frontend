@@ -1,4 +1,4 @@
-import Shimmer from "../../../../components/ShimmerLoader"
+import Shimmer from "../../ShimmerLoader"
 
 export const CarCategorySectionLoader = () => {
     return (

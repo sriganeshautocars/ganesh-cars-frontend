@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { CheckAuth } from "../../components/CheckAuth";
 import { Modal } from "../../components/Modal";
@@ -6,6 +6,7 @@ import CarDetailsForm from "../../components/CarDetailsForm";
 import { useCarDataStore } from "../../store/useAppStore";
 import { deleteCar, getCarList } from "../../api";
 import { DeleteConfirmContent } from "./components/DeleteConfirmContent";
+import { useFetchCars } from "../../hooks/useFetchCars";
 
 
 const Dashboard = () => {
@@ -15,15 +16,12 @@ const Dashboard = () => {
 
     const { allCars, setAllCars } = useCarDataStore();
 
-    useEffect(() => {
-        getAllCars()
-    }, [])
+    useFetchCars()
 
     const getAllCars = async () => {
         try {
             const cars = await getCarList();
             setAllCars(cars)
-
         } catch (e) {
             console.log('Error while fetching list', e)
         }

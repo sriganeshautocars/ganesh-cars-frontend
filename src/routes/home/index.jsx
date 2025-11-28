@@ -11,7 +11,7 @@ import { useCarDataStore } from "../../store/useAppStore";
 import { BrandList } from "./components/BrandList";
 import { HeroSection } from "./components/HeroSection";
 import { ContactUs } from "./components/ContactUs";
-import { CarCategorySectionLoader } from "./components/CarCategorySectionLoader";
+import { CarCategorySectionLoader } from "../../components/Loaders/CarCategorySectionLoader";
 
 
 const Home = () => {
@@ -24,7 +24,7 @@ const Home = () => {
     const [ownershipRef, ownershipInView] = useInView({ threshold: 0.2, once: true });
     const [testimonialRef, testimonialInView] = useInView({ threshold: 0.2, once: true });
 
-    const { allCars } = useCarDataStore();
+    const { allCars, isLoading } = useCarDataStore();
 
     const navigate = useNavigate();
 
@@ -60,8 +60,10 @@ const Home = () => {
                 <div ref={budgetRef} className={`w-full mt-4 transform transition-all duration-700 ease-out ${budgetInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
                     <h3 className="font-bold text-xl">Cars by Budget</h3>
                     {
-                        BUDGET_TABS.length > 0
+                        isLoading
                             ?
+                            <CarCategorySectionLoader />
+                            :
                             <Tabs
                                 tabs={BUDGET_TABS}
                                 selectedTab={selectedBudgetTab}
@@ -72,15 +74,15 @@ const Home = () => {
                                         car?.price <= selectedBudgetTab?.max
                                 )}
                             />
-                            :
-                            <CarCategorySectionLoader />
                     }
                 </div>
                 <div ref={fuelTypeRef} className={`w-full mt-4 transform transition-all duration-700 ease-out ${fuelTypeInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
                     <h3 className="font-bold text-xl">Cars by Fuel Type</h3>
                     {
-                        FUEL_TYPE_TABS.length > 0
+                        isLoading
                             ?
+                            <CarCategorySectionLoader />
+                            :
                             <Tabs
                                 tabs={FUEL_TYPE_TABS}
                                 selectedTab={selectedFuelTypeTab}
@@ -89,14 +91,16 @@ const Home = () => {
                                     (car) =>
                                         car?.fuel_type?.toLowerCase()?.includes(selectedFuelTypeTab?.value)
                                 )}
-                            /> :
-                            <CarCategorySectionLoader />
+                            />
                     }
                 </div>
                 <div ref={ownershipRef} className={`w-full mt-4 transform transition-all duration-700 ease-out ${ownershipInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
                     <h3 className="font-bold text-xl">Cars by Ownership</h3>
                     {
-                        OWNERSHIP_TABS.length > 0 ?
+                        isLoading
+                            ?
+                            <CarCategorySectionLoader />
+                            :
                             <Tabs
                                 tabs={OWNERSHIP_TABS}
                                 selectedTab={selectedOwnershipTab}
@@ -105,8 +109,6 @@ const Home = () => {
                                     (car) => car?.ownership === selectedOwnershipTab?.value
                                 )}
                             />
-                            :
-                            <CarCategorySectionLoader />
                     }
                 </div>
                 <div ref={testimonialRef} className={`w-full my-4 transform transition-all duration-700 ease-out ${testimonialInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
