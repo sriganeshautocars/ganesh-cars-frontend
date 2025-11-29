@@ -20,7 +20,7 @@ export const BrandList = ({ handleViewAllCars }) => {
         navigate(`/listing?search=${value}`);
     }
 
-    return <div className="flex flex-col gap-y-4 items-center justify-center w-full">
+    return <div className="w-full max-w-[1280px] flex flex-col gap-y-4 items-center justify-center px-4">
         <button className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-md sm:hidden" onClick={handleViewAllCars}>View All Cars</button>
         <input
             type="text"

@@ -2,7 +2,7 @@ import Car from "/innova.png";
 
 export const HeroSection = ({ handleViewAllCars }) => {
     return (
-        <div className="w-full">
+        <div className="w-full max-w-[1280px] px-4 relative overflow-hidden">
             <div className="w-full flex flex-col items-center justify-start sm:hidden h-fit">
                 <img src={Car} alt="image" className="w-full h-auto" />
             </div>

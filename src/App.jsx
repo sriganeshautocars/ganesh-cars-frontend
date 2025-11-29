@@ -14,7 +14,7 @@ function App() {
   return (
     <div className='w-full max-w-screen'>
       <Header />
-      <div className='w-full sm:max-w-[1280px] mx-auto px-4 min-h-[calc(100vh-160px)]'>
+      <div className='w-full flex justify-center mx-auto min-h-[calc(100vh-160px)]'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -22,7 +22,6 @@ function App() {
           <Route path="/details/:id" element={<CarDetails />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-
       </div>
       <Footer />
     </div>

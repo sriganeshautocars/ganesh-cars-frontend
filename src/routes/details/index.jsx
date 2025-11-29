@@ -33,7 +33,7 @@ const CarDetails = () => {
     }
 
     return (
-        <div className="w-full">
+        <div className="w-full sm:max-w-[1280px] px-4">
             <div className="w-full h-auto hidden sm:grid grid-cols-10 gap-2 py-4">
                 <div className="col-span-6 grid gap-6">
                     <CarImages carDetails={carDetails} />

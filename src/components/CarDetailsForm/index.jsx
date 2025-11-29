@@ -165,7 +165,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
     }
 
     return (
-        <div className="p-4 max-h-[90vh] overflow-y-auto w-[80vw] mx-auto bg-white rounded shadow">
+        <div className="p-4 max-h-[90vh] overflow-y-auto w-[90vw] sm:w-[80vw] mx-auto bg-white rounded shadow">
             {/* Basic details */}
             <h2 className="text-lg font-semibold mb-2">Basic Car Details</h2>
 

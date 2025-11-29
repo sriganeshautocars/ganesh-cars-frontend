@@ -54,7 +54,7 @@ const Dashboard = () => {
 
     return (
         <CheckAuth>
-            <div className="w-full py-4">
+            <div className="w-full sm:max-w-[1280px] p-4">
                 <div className="w-full flex items-center justify-between my-4">
                     <h3 className="text-2xl sm:text-3xl font-semibold">Car List</h3>
                     <button className="px-2 sm:px-3 py-1 sm:py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => setShowModal(true)}>Add New Car</button>
@@ -72,15 +72,18 @@ const Dashboard = () => {
                     <div className="grid grid-cols-9 sm:grid-cols-10 items-center gap-2 border-b-2 border-gray-300 py-2 sm:p-2" key={index}>
                         <div className="col-span-1">{car?.id}</div>
                         <div className="col-span-2 flex items-center justify-start">
-                            <img src={car?.thumbnail} alt={car?.name} className="w-full h-auto sm:h-24" />
+                            <img src={car?.thumbnail} alt={car?.name} className="w-full sm:w-40 h-auto sm:h-24" />
                         </div>
                         <div className="col-span-2 sm:col-span-1 w-full text-ellipsis overflow-hidden">{car?.name}</div>
                         <div className="hidden sm:block col-span-2">{car?.reg_number}</div>
                         <div className="hidden sm:block col-span-2">{car?.location}</div>
-                        <button className="col-span-2 sm:col-span-1 h-fit px-1 sm:px-2 py-0.5 sm:py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => {
-                            setSelectedCarDetails(car);
-                            setShowModal(!showModal);
-                        }}>
+                        <button
+                            className="col-span-2 sm:col-span-1 h-fit px-1 sm:px-2 py-0.5 sm:py-1.5 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                            onClick={() => {
+                                setSelectedCarDetails(car);
+                                setShowModal(!showModal);
+                            }}
+                        >
                             Update
                         </button>
                         <button className=" col-span-2 sm:col-span-1 h-fit px-1 sm:px-2 py-0.5 sm:py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700" onClick={() => setSelectedCarToDelete(car)}>
@@ -97,10 +100,15 @@ const Dashboard = () => {
             {
                 selectedCarToDelete?.id && (
                     <Modal
-                        content={<DeleteConfirmContent carName={selectedCarToDelete?.name} onConfirm={() => {
-                            handleDeleteCar(selectedCarToDelete?.id);
-                            setSelectedCarToDelete(null);
-                        }} onCancel={() => setSelectedCarToDelete(null)} />}
+                        content={
+                            <DeleteConfirmContent
+                                carName={selectedCarToDelete?.name}
+                                onConfirm={() => {
+                                    handleDeleteCar(selectedCarToDelete?.id);
+                                    setSelectedCarToDelete(null);
+                                }}
+                                onCancel={() => setSelectedCarToDelete(null)}
+                            />}
                         handleClose={() => setSelectedCarToDelete(null)}
                     />
                 )

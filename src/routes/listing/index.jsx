@@ -37,7 +37,7 @@ const CarListing = () => {
 
 
     return (
-        <div className="w-full h-auto grid grid-cols-5 gap-4 py-6">
+        <div className="w-full sm:max-w-[1280px] h-auto grid grid-cols-5 gap-4 py-6 px-4">
             <div className="col-span-1 hidden sm:block">
                 <CarFilters />
             </div>

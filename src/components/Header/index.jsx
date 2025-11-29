@@ -3,7 +3,7 @@ import { WHATSAPP_API_URL } from "../../constants";
 export const Header = () => {
 
     const handleSellClick = () => {
-        const recipient = 'youremail@example.com';
+        const recipient = 'sriganeshautocarsudupi@gmail.com';
         const subject = encodeURIComponent('Sell my car - Inquiry');
         const body = encodeURIComponent(
             'Hi,\n\nI would like to sell my car. Please find the details below and attach any images/documents as needed:\n\n- Name:\n- Phone:\n- Car make / model:\n- Year:\n- Mileage (km):\n- Expected price:\n- Additional notes:\n\nPlease attach photos and any documents when composing the email.\n\nThanks,'
@@ -15,7 +15,7 @@ export const Header = () => {
     }
 
     return (
-        <div className="sticky top-0 w-full z-100 px-2 sm:px-4 py-3 flex items-center justify-between bg-blue-500">
+        <div className="sticky top-0 w-full z-100 px-2 sm:px-4 py-3 flex items-center justify-between bg-blue-500 shadow-blue-100 shadow-sm">
             <a href="/">
                 <span className="font-bold text-xl sm:text-2xl text-white">Sri Ganesh</span>
             </a>
