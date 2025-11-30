@@ -7,7 +7,7 @@ export const useFetchCars = () => {
 
     useEffect(() => {
         if (filteredCars.length === 0) {
-            getAllCars();
+            requestIdleCallback(() => getAllCars());
         }
     }, [])
 

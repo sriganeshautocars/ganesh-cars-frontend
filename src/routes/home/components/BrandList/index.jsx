@@ -38,6 +38,7 @@ export const BrandList = ({ handleViewAllCars }) => {
                             alt="image"
                             className="w-10 h-10 object-contain"
                             onClick={() => handleFilterNavigation(logo?.id)}
+                            loading="lazy"
                         />
                     </div>
                 );

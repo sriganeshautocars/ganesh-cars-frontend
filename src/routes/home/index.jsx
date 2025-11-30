@@ -126,7 +126,9 @@ const Home = () => {
                                                 className="w-full h-48 object-cover"
                                                 width={100}
                                                 height={100}
-                                                alt="Customer Image" />
+                                                alt="Customer Image"
+                                                loading="lazy"
+                                            />
                                             <div className="px-3 py-2">
                                                 <p>{getReviewContent(testimonial?.review)}</p>
                                                 <div className="text-sm font-semibold flex justify-between mt-2">

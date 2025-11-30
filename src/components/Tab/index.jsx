@@ -23,7 +23,7 @@ export const Tabs = (props) => {
                         <p
                             key={tab?.id}
                             className={`cursor-pointer ${selectedTab?.id == tab?.id
-                                ? "text-blue-700 border-b-2 border-blue-700"
+                                ? "text-blue-700 border-b-2 border-blue-700 font-medium"
                                 : ""
                                 }`}
                             onClick={() => handleTabChange(tab)}
@@ -48,6 +48,7 @@ export const Tabs = (props) => {
                                     width={100}
                                     height={100}
                                     alt="Car Image"
+                                    loading="lazy"
                                 />
                                 <div className="p-3">
                                     <h3 className="font-medium text-xl">{content?.name}</h3>

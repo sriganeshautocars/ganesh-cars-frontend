@@ -1,10 +1,10 @@
-import Car from "/innova.png";
+import { HERO_IMAGE_URL } from "../../../../constants";
 
 export const HeroSection = ({ handleViewAllCars }) => {
     return (
         <div className="w-full max-w-[1280px] px-4 relative overflow-hidden">
             <div className="w-full flex flex-col items-center justify-start sm:hidden h-fit">
-                <img src={Car} alt="image" className="w-full h-auto" />
+                <img src={HERO_IMAGE_URL} alt="Best pre-owned cars" fetchPriority="high" loading="eager" className="w-full h-auto" />
             </div>
             <div className="w-full relative hidden sm:flex flex-row items-start h-[70vh]">
                 <div className="flex flex-col gap-y-10 mt-10 mb-20">
@@ -19,7 +19,7 @@ export const HeroSection = ({ handleViewAllCars }) => {
                     <button className="px-10 py-3 bg-blue-500 text-xl text-white hover:bg-blue-600 rounded-md w-fit h-fit cursor-pointer" onClick={handleViewAllCars}>Explore Now</button>
                 </div>
                 <div className="h-full flex items-center justify-center">
-                    <img src={Car} alt="image" className="h-full w-auto" />
+                    <img src={HERO_IMAGE_URL} alt="Best pre-owned cars" fetchPriority="high" loading="eager" className="h-full w-auto" />
                 </div>
             </div>
         </div>

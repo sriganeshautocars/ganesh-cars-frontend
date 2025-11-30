@@ -16,7 +16,7 @@ export const Header = () => {
 
     return (
         <div className="sticky top-0 w-full z-100 px-2 sm:px-4 py-3 flex items-center justify-between bg-blue-500 shadow-blue-100 shadow-sm">
-            <a href="/">
+            <a href="/" aria-label="Ganesh Cars Home" className="flex items-center gap-2">
                 <span className="font-bold text-xl sm:text-2xl text-white">Sri Ganesh</span>
             </a>
             <div className="flex items-center gap-2">

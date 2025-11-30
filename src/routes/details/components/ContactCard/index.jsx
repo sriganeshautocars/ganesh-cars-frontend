@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 
 import { GrLocation } from "react-icons/gr"
 import { FcLike } from "react-icons/fc"
+import { GoHeart } from "react-icons/go"
 import { DROPDOWN_VALUES_MAP, WHATSAPP_API_URL } from "../../../../constants"
 import { getNumberInLocalString, getNumberInStringFormat, getOrdinalNumber } from "../../../../utils"
-import { GoHeart } from "react-icons/go"
 
 
 export const ContactCard = ({ carDetails }) => {

@@ -177,6 +177,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                             src={thumbNailImage}
                             alt={`thumbnail-image`}
                             className="w-32 h-auto object-cover rounded border"
+                            loading="lazy"
                         />
                         <ImageInput
                             label="Update image"
@@ -256,6 +257,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                                         src={url}
                                         alt={`${type}-${idx}`}
                                         className="w-full h-20 object-cover rounded border"
+                                        loading="lazy"
                                     />
                                 </div>
                             ))}
@@ -279,6 +281,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                                         src={URL.createObjectURL(file)}
                                         alt={`${type}-${idx}`}
                                         className="w-full h-20 object-cover rounded border"
+                                        loading="lazy"
                                     />
                                 </div>
                             ))}

@@ -56,6 +56,7 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
                 width={100}
                 height={100}
                 alt="carDetails Image"
+                loading="lazy"
             />
             <div className="w-full flex flex-col items-stretch justify-start pt-2 gap-y-2">
                 <div className="flex items-start justify-between px-3">

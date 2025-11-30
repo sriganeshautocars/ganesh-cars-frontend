@@ -72,7 +72,7 @@ const Dashboard = () => {
                     <div className="grid grid-cols-9 sm:grid-cols-10 items-center gap-2 border-b-2 border-gray-300 py-2 sm:p-2" key={index}>
                         <div className="col-span-1">{car?.id}</div>
                         <div className="col-span-2 flex items-center justify-start">
-                            <img src={car?.thumbnail} alt={car?.name} className="w-full sm:w-40 h-auto sm:h-24" />
+                            <img src={car?.thumbnail} alt={car?.name} className="w-full sm:w-40 h-auto sm:h-24" loading="lazy" />
                         </div>
                         <div className="col-span-2 sm:col-span-1 w-full text-ellipsis overflow-hidden">{car?.name}</div>
                         <div className="hidden sm:block col-span-2">{car?.reg_number}</div>

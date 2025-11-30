@@ -1453,3 +1453,5 @@ export const TESTIMONIALS = [
 const WHATSAPP_NUMBER = "919880041747";
 
 export const WHATSAPP_API_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`;
+
+export const HERO_IMAGE_URL = "https://pub-481985cf3d384e8d8d5df8bde317c06f.r2.dev/cars/innova.webp"

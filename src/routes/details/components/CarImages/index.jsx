@@ -37,6 +37,7 @@ export const CarImages = ({ carDetails }) => {
                     src={`${imageList[imageIndex]}`}
                     alt={carDetails?.name}
                     className={`w-full h-full object-contain sm:object-cover`}
+                    loading="lazy"
                 />
                 {imageIndex < imageList.length - 1 && (
                     <div
@@ -58,6 +59,7 @@ export const CarImages = ({ carDetails }) => {
                                 src={carDetails?.images?.exterior?.[0]}
                                 alt={carDetails?.name}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
                         <p className="text-center text-gray-300">Exterior</p>
@@ -73,6 +75,7 @@ export const CarImages = ({ carDetails }) => {
                                 src={carDetails?.images?.interior?.[0]}
                                 alt={carDetails?.name}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
                         <p className="text-center text-gray-300">Interior</p>
@@ -88,6 +91,7 @@ export const CarImages = ({ carDetails }) => {
                                 src={carDetails?.images?.tyres?.[0]}
                                 alt={carDetails?.name}
                                 className="w-full h-full object-cover"
+                                loading="lazy"
                             />
                         </div>
                         <p className="text-center text-gray-300">Tyres</p>
