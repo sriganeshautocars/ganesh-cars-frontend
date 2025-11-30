@@ -14,7 +14,7 @@ const CarFilters = ({ handleClose }) => {
         selectedFuelTypes,
         selectedBodyTypes,
         selectedOwnerships,
-        selectedColors,
+        // selectedColors,
         selectedSeats,
         makeYear,
         availableBrands,
@@ -22,7 +22,7 @@ const CarFilters = ({ handleClose }) => {
         availableFuelTypes,
         availableBodyTypes,
         availableOwnerships,
-        availableColors,
+        // availableColors,
         availableSeats,
         initialMakeYearRange,
         setBudget,
@@ -32,7 +32,7 @@ const CarFilters = ({ handleClose }) => {
         toggleFuelType,
         toggleBodyType,
         toggleOwnership,
-        toggleColor,
+        // toggleColor,
         toggleSeat,
         setMakeYear,
         clearFilters,
@@ -182,7 +182,7 @@ const CarFilters = ({ handleClose }) => {
                     <hr className="my-4" />
 
                     {/* Color Filter (Note: Data for 'color' is not in CARS.js) */}
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <h4 className="text-lg font-medium mb-2">Color</h4>
                         {availableColors.map((color) => (
                             <div key={color} className="flex items-center mb-1">
@@ -191,7 +191,7 @@ const CarFilters = ({ handleClose }) => {
                             </div>
                         ))}
                     </div>
-                    <hr className="my-4" />
+                    <hr className="my-4" /> */}
 
                     {/* Seats Filter */}
                     <div className="mb-4">

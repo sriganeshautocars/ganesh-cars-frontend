@@ -15,7 +15,7 @@ export const Header = () => {
     }
 
     return (
-        <div className="sticky top-0 w-full z-100 px-2 sm:px-4 py-3 flex items-center justify-between bg-blue-500 shadow-blue-100 shadow-sm">
+        <div className="sticky top-0 w-full z-100 px-2 sm:px-4 py-3 flex items-center justify-between bg-blue-600 shadow-blue-100 shadow-sm">
             <a href="/" aria-label="Ganesh Cars Home" className="flex items-center gap-2">
                 <span className="font-bold text-xl sm:text-2xl text-white">Sri Ganesh</span>
             </a>
@@ -23,7 +23,7 @@ export const Header = () => {
                 <a
                     href={`${WHATSAPP_API_URL}&text=Hi%2C%20I%20am%20interested%20in%20one%20of%20your%20cars`}
                     target="_blank"
-                    className="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
+                    className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-600 transition"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

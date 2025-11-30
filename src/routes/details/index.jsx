@@ -13,8 +13,6 @@ const CarDetails = () => {
 
     const { id } = useParams();
 
-    console.log('details', carDetails)
-
     useEffect(() => {
         if (id) {
             getCarDetails(id)

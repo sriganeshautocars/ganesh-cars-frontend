@@ -11,6 +11,10 @@ export const CarImages = ({ carDetails }) => {
         ]);
     }, [carDetails?.thumbnail]);
 
+    useEffect(() => {
+        setImageIndex(0)
+    }, [imageList])
+
 
     const handleNextClick = () => {
         if (imageIndex === imageList.length - 1) return;

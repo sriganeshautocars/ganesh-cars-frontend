@@ -13,7 +13,7 @@ import './App.css'
 function App() {
 
   return (
-    <div className='w-full max-w-screen'>
+    <div className='w-full max-w-screen bg-gray-50'>
       <Header />
       <div className='w-full flex justify-center mx-auto min-h-[calc(100vh-160px)]'>
         <Suspense fallback={<div className='w-full flex items-center justify-center min-h-[60vh]'>Loading...</div>}>
