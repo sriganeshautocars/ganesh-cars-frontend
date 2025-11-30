@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /listing
+Allow: /details/:id
+Disallow: /dashboard
+Disallow: /login
+
+Sitemap:https://ganesh-cars-frontend.vercel.app/sitemap.xml
