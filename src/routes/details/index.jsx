@@ -7,9 +7,12 @@ import { CarImages } from "./components/CarImages";
 import { CarOverview } from "./components/CarOverview";
 import { CarFeatures } from "./components/CarFeatures";
 import { CarSpecifications } from "./components/CarSpecifications";
+import { useCarDataStore } from "../../store/useAppStore";
+import { CarDetailsLoader } from "../../components/Loaders/CarDetailsLoader";
 
 const CarDetails = () => {
     const [carDetails, setCarDetails] = useState({});
+    const { isLoading } = useCarDataStore();
 
     const { id } = useParams();
 
@@ -32,24 +35,30 @@ const CarDetails = () => {
 
     return (
         <div className="w-full sm:max-w-[1280px] px-4">
-            <div className="w-full h-auto hidden sm:grid grid-cols-10 gap-2 py-4">
-                <div className="col-span-6 grid gap-6">
-                    <CarImages carDetails={carDetails} />
-                    <CarOverview carDetails={carDetails} />
-                    <CarFeatures carDetails={carDetails} />
-                    <CarSpecifications carDetails={carDetails} />
-                </div>
-                <div className="col-span-4">
-                    <ContactCard carDetails={carDetails} />
-                </div>
-            </div>
-            <div className="w-full h-auto grid sm:hidden grid-cols-1 gap-2 py-4">
-                <CarImages carDetails={carDetails} />
-                <ContactCard carDetails={carDetails} />
-                <CarOverview carDetails={carDetails} />
-                <CarFeatures carDetails={carDetails} />
-                <CarSpecifications carDetails={carDetails} />
-            </div>
+            {isLoading ?
+                <CarDetailsLoader />
+                :
+                <>
+                    <div className="w-full h-auto hidden sm:grid grid-cols-10 gap-2 py-4">
+                        <div className="col-span-6 grid gap-6">
+                            <CarImages carDetails={carDetails} />
+                            <CarOverview carDetails={carDetails} />
+                            <CarFeatures carDetails={carDetails} />
+                            <CarSpecifications carDetails={carDetails} />
+                        </div>
+                        <div className="col-span-4">
+                            <ContactCard carDetails={carDetails} />
+                        </div>
+                    </div>
+                    <div className="w-full h-auto grid sm:hidden grid-cols-1 gap-2 py-4">
+                        <CarImages carDetails={carDetails} />
+                        <ContactCard carDetails={carDetails} />
+                        <CarOverview carDetails={carDetails} />
+                        <CarFeatures carDetails={carDetails} />
+                        <CarSpecifications carDetails={carDetails} />
+                    </div>
+                </>
+            }
         </div>
     );
 };

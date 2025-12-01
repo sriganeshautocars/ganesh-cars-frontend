@@ -5,18 +5,21 @@ const Dashboard = React.lazy(() => import('./routes/dashboard'))
 const CarListing = React.lazy(() => import('./routes/listing'))
 const CarDetails = React.lazy(() => import('./routes/details'))
 const Login = React.lazy(() => import('./routes/login'))
+import { SuspenseLoader } from './components/Loaders/SuspenseLoader';
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 
 import './App.css'
 
+
 function App() {
 
   return (
+
     <div className='w-full max-w-screen bg-gray-50'>
       <Header />
       <div className='w-full flex justify-center mx-auto min-h-[calc(100vh-160px)]'>
-        <Suspense fallback={<div className='w-full flex items-center justify-center min-h-[60vh]'>Loading...</div>}>
+        <Suspense fallback={<SuspenseLoader />}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />

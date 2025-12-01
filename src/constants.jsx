@@ -8,8 +8,8 @@ import Hyundai from "/car-logos/hyundai.svg";
 import Skoda from "/car-logos/skoda.svg";
 import Mahindra from "/car-logos/mahindra.svg";
 import Tata from "/car-logos/tata.svg";
-import { LiaCalendarCheck } from "react-icons/lia";
-import { BsFuelPump } from "react-icons/bs";
+import { CalendarCheck } from "lucide-react";
+import { Fuel } from "lucide-react";
 import { MdSpeed } from "react-icons/md";
 import { TbAutomaticGearboxFilled } from "react-icons/tb";
 import { PiEngine } from "react-icons/pi";
@@ -22,8 +22,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { IoCarSportOutline } from "react-icons/io5";
 
 export const OVERVIEW_ICON_MAP = {
-    registration: <LiaCalendarCheck size={24} className="text-gray-900" />,
-    fuel: <BsFuelPump size={24} className="text-gray-900" />,
+    registration: <CalendarCheck size={24} className="text-gray-900" />,
+    fuel: <Fuel size={24} className="text-gray-900" />,
     kilometer: <MdSpeed size={24} className="text-gray-900" />,
     transmission: (
         <TbAutomaticGearboxFilled size={24} className="text-gray-900" />
