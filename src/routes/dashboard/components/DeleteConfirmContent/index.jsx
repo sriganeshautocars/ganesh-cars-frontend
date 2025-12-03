@@ -1,6 +1,6 @@
 export const DeleteConfirmContent = ({ carName, onConfirm, onCancel }) => {
     return (
-        <div className="p-4 bg-white rounded-md shadow-md w-full">
+        <div className="p-4 bg-white rounded-md shadow-md w-full min-w-[300px]">
             <h2 className="text-xl font-semibold mb-4">Confirm Deletion</h2>
             <p className="mb-4">Are you sure you want to delete <span className="font-bold">{carName}</span>?</p>
             <div className="flex justify-end gap-2">

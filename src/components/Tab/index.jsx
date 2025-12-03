@@ -66,7 +66,7 @@ export const Tabs = (props) => {
                                 onClick={() => handleViewCarDetails(content?.id)}
                             >
                                 <img
-                                    src={content?.images?.["exterior"]?.[0]}
+                                    src={content?.thumbnail}
                                     className="w-full h-34 object-cover"
                                     width={100}
                                     height={100}

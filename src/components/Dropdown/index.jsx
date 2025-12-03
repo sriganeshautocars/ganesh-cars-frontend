@@ -3,7 +3,7 @@ import { useClickOutside } from '../../hooks/useClickOutside';
 
 import { IoCaretDownSharp } from "react-icons/io5";
 
-export const Dropdown = ({ label, options = [], defaultValue = '', selectedOption = '', onChange }) => {
+export const Dropdown = ({ label, options = [], defaultValue = '', selectedOption = '', onChange, isMandatory = false }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -22,7 +22,7 @@ export const Dropdown = ({ label, options = [], defaultValue = '', selectedOptio
         <div className="flex flex-col relative w-full" ref={dropdownRef}>
             {label && (
                 <label className="mb-1 text-sm font-medium">
-                    {label}
+                    {label}{isMandatory && <span className='text-red-500'>*</span>}
                 </label>
             )}
             <div

@@ -15,10 +15,7 @@ export const addCar = async (carData) => {
 export const getCarList = async () => {
     try {
         const response = await axios.get(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars`)
-        const carList = response?.data;
-        const parsedCarList = carList?.map((car) => ({ ...car, features: JSON.parse(car?.features), specifications: JSON.parse(car?.specifications), images: JSON.parse(car?.images) }))
-
-        return parsedCarList
+        return response?.data
     }
     catch (error) {
         console.log('Error while getting car list', error);

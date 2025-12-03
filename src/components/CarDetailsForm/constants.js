@@ -1,6 +1,6 @@
 export const basicData = [
     {
-        label: "Brand", name: "brand", placeHolder: "Eg. Hyundai", isDropdown: true, options: [
+        label: "Brand", name: "brand", isMandatory: true, isDropdown: true, options: [
             { label: 'Honda', value: 'honda' },
             { label: 'Hyundai', value: 'hyundai' },
             { label: 'Tata', value: 'tata' },
@@ -27,12 +27,12 @@ export const basicData = [
             { label: 'MG', value: 'mg' },
             { label: 'Suzuki', value: 'suzuki' }],
     },
-    { label: "Name", name: "name", placeHolder: "Eg. Creta" },
-    { label: "Variant", name: "variant", placeHolder: "Eg. SX(O) Turbo" },
-    { label: "KM Driven", name: "km_driven", isNumber: true, placeHolder: "Eg. 45,000" },
-    { label: "Fuel Type", name: "fuel_type", placeHolder: "Eg. Petrol", isDropdown: true, options: [{ label: 'Petrol', value: 'petrol' }, { label: 'Diesel', value: 'diesel' }, { label: 'Electric', value: 'electric' }, { label: 'Hybrid', value: 'hybrid' }, { label: 'CNG', value: 'cng' }] },
+    { label: "Name", name: "name", isMandatory: true, placeHolder: "Eg. Creta" },
+    { label: "Variant", name: "variant", isMandatory: true, placeHolder: "Eg. SX(O) Turbo" },
+    { label: "KM Driven", name: "km_driven", isMandatory: true, isNumber: true, placeHolder: "Eg. 45,000" },
+    { label: "Fuel Type", name: "fuel_type", isMandatory: true, placeHolder: "Eg. Petrol", isDropdown: true, options: [{ label: 'Petrol', value: 'petrol' }, { label: 'Diesel', value: 'diesel' }, { label: 'Electric', value: 'electric' }, { label: 'Hybrid', value: 'hybrid' }, { label: 'CNG', value: 'cng' }] },
     {
-        label: "Body Type", name: "body_type", placeHolder: "Eg. SUV", isDropdown: true, options: [
+        label: "Body Type", name: "body_type", isMandatory: true, isDropdown: true, options: [
             { label: "Hatchback", value: "hatchback" },
             { label: "Sedan", value: "sedan" },
             { label: "SUV (Sports Utility Vehicle)", value: "suv" },
@@ -52,7 +52,7 @@ export const basicData = [
         ]
     },
     {
-        label: "Transmission Type", name: "transmission_type", placeHolder: "Eg. Automatic", isDropdown: true, options: [
+        label: "Transmission Type", name: "transmission_type", isMandatory: true, isDropdown: true, options: [
             { label: "Manual", value: "manual" },
             { label: "Automatic", value: "automatic" },
             { label: "AMT (Automated Manual Transmission)", value: "amt" },
@@ -65,11 +65,11 @@ export const basicData = [
             { label: "Sequential", value: "sequential" }
         ]
     },
-    { label: "Price", name: "price", isNumber: true, placeHolder: "Eg. 12,50,000" },
-    { label: "Location", name: "location", placeHolder: "Eg. Bangalore" },
+    { label: "Price", name: "price", isMandatory: true, isNumber: true, placeHolder: "Eg. 12,50,000" },
+    { label: "Location", name: "location", isMandatory: true, placeHolder: "Eg. Bangalore" },
     { label: "Insurance", name: "insurance", placeHolder: "Eg. Valid till Dec 2025" },
     {
-        label: "No of Seats", name: "no_of_seats", placeHolder: "Eg. 5", isDropdown: true, options: [
+        label: "No of Seats", name: "no_of_seats", isMandatory: true, isDropdown: true, options: [
             { label: "2 Seater", value: 2 },
             { label: "4 Seater", value: 4 },
             { label: "5 Seater", value: 5 },
@@ -79,12 +79,12 @@ export const basicData = [
             { label: "9 Seater", value: 9 }
         ]
     },
-    { label: "Reg Number", name: "reg_number", placeHolder: "Eg. KA03AB1234" },
-    { label: "Ownership", name: "ownership", placeHolder: "Eg. 2", isDropdown: true, options: [{ label: '1st', value: 1 }, { label: '2nd', value: 2 }, { label: '3rd', value: 3 }, { label: '4th', value: 4 }, { label: '5th', value: 5 }] },
-    { label: "Engine Displacement", name: "engine_displacement", isNumber: true, placeHolder: "Eg. 1497 cc" },
-    { label: "Highway Mileage", name: "highway_mileage", isNumber: true, placeHolder: "Eg. 18 kmpl" },
-    { label: "Make Year", name: "make_year", isNumber: true, placeHolder: "Eg. 2020" },
-    { label: "Reg Year", name: "reg_year", isNumber: true, placeHolder: "Eg. 2021" },
+    { label: "Reg Number", name: "reg_number", isMandatory: true, placeHolder: "Eg. KA03AB1234" },
+    { label: "Ownership", name: "ownership", isMandatory: true, isDropdown: true, options: [{ label: '1st', value: 1 }, { label: '2nd', value: 2 }, { label: '3rd', value: 3 }, { label: '4th', value: 4 }, { label: '5th', value: 5 }] },
+    { label: "Engine Displacement", name: "engine_displacement", isMandatory: true, isNumber: true, placeHolder: "Eg. 1497 cc" },
+    { label: "Highway Mileage", name: "highway_mileage", isMandatory: true, isNumber: true, placeHolder: "Eg. 18 kmpl" },
+    { label: "Make Year", name: "make_year", isMandatory: true, isNumber: true, placeHolder: "Eg. 2020" },
+    { label: "Reg Year", name: "reg_year", isMandatory: true, isNumber: true, placeHolder: "Eg. 2021" },
 
 ];
 
