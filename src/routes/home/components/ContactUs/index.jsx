@@ -16,13 +16,15 @@ const CONTACT_INFO = {
     email: {
         icon: <HiOutlineMail size={32} />,
         title: "Email Address",
+        isEmail: true,
         description: "sriganeshautocarsudupi@gmail.com"
 
     },
     phone: {
         icon: <FiPhoneCall size={32} />,
         title: "Phone Number",
-        description: "+91 9880041747, +91 9480661747"
+        isMobile: true,
+        description: ['+91 9880041747', '+91 9480661747']
     },
     time: {
         icon: <AiOutlineClockCircle size={32} />,
@@ -47,6 +49,8 @@ export const ContactUs = () => {
                                 icon={info?.icon}
                                 title={info?.title}
                                 description={info?.description}
+                                isEmail={info?.isEmail}
+                                isMobile={info?.isMobile}
                             />
                         ))
                     }

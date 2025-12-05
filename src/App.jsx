@@ -5,6 +5,11 @@ const Dashboard = React.lazy(() => import('./routes/dashboard'))
 const CarListing = React.lazy(() => import('./routes/listing'))
 const CarDetails = React.lazy(() => import('./routes/details'))
 const Login = React.lazy(() => import('./routes/login'))
+const AboutUS = React.lazy(() => import('./routes/about'))
+const PrivacyPolicy = React.lazy(() => import('./routes/privacyPolicy'))
+const TermsAndConditions = React.lazy(() => import('./routes/termsConditions'))
+const Reviews = React.lazy(() => import('./routes/reviews'))
+const WhyUs = React.lazy(() => import('./routes/whyUs'))
 import { SuspenseLoader } from './components/Loaders/SuspenseLoader';
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
@@ -26,6 +31,11 @@ function App() {
             <Route path="/listing" element={<CarListing />} />
             <Route path="/details/:id" element={<CarDetails />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/why-us" element={<WhyUs />} />
+            <Route path="/about-us" element={<AboutUS />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/terms-conditions" element={<TermsAndConditions />} />
           </Routes>
         </Suspense>
       </div>

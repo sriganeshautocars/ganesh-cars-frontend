@@ -1,27 +1,27 @@
+import { Link } from "react-router-dom";
+
 import { ImFacebook2 } from "react-icons/im";
 import { GrInstagram } from "react-icons/gr";
 import { BsTwitterX } from "react-icons/bs";
+import { handleSellingEnquiry } from "../../utils";
 
 export const Footer = () => {
     return <div className="w-full px-4 sm:px-20 py-3 bg-blue-100 flex items-start justify-between gap-x-2">
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Company</h3>
-            <span>About Us</span>
-            <span>Why Us</span>
-            <span>Customer Reviews</span>
-            <span>Privacy Policy</span>
-
+            <Link to="/about-us">About Us</Link>
+            <Link to="/why-us">Why Us</Link>
+            <Link to="/reviews">Customer Reviews</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Explore</h3>
-            <span>Buy pre-owned car</span>
-            <span>Sell used car</span>
+            <Link to="/listing">Buy pre-owned car</Link>
+            <span onClick={handleSellingEnquiry} className="cursor-pointer">Sell used car</span>
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Help and Support</h3>
-            <span>FAQ</span>
-            <span>Contact Us</span>
-            <span>Terms and Conditions</span>
+            <Link to="/terms-conditions">Terms and Conditions</Link>
 
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">

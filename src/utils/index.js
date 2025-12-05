@@ -45,3 +45,20 @@ export const getOrdinalNumber = (number) => {
 export const getTitleCase = (str) => {
     return str.charAt(0).toUpperCase() + str?.replaceAll('-', ' ').slice(1)
 }
+
+export const handleSellingEnquiry = () => {
+    const recipient = 'sriganeshautocarsudupi@gmail.com';
+    const subject = encodeURIComponent('Sell my car - Inquiry');
+    const body = encodeURIComponent(
+        'Hi,\n\nI would like to sell my car. Please find the details below and attach any images/documents as needed:\n\n- Name:\n- Phone:\n- Car make / model:\n- Year:\n- Mileage (km):\n- Expected price:\n- Additional notes:\n\nPlease attach photos and any documents when composing the email.\n\nThanks,'
+    );
+
+    // Open default mail client with prefilled subject and body. Note: attachments cannot
+    // be added via mailto links — user must attach files manually in their mail client.
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+}
+
+export const handleMailEnquiry = () => {
+    const recipient = 'sriganeshautocarsudupi@gmail.com';
+    window.location.href = `mailto:${recipient}`;
+}
