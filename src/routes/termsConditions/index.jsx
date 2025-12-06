@@ -4,7 +4,7 @@ const effectiveDate = "December 6, 2025";
 
 const TermsAndConditions = () => {
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-800 py-6">
+        <div className="min-h-screen bg-gray-50 text-gray-800 py-6 px-4">
             <div className="max-w-[1280px] mx-auto">
                 <header className="mb-6">
                     <h1 className="text-3xl font-semibold leading-tight">Terms & Conditions</h1>
