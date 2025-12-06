@@ -6,20 +6,23 @@ export const HeroSection = ({ handleViewAllCars }) => {
             <div className="w-full flex flex-col items-center justify-start sm:hidden h-fit">
                 <img src={HERO_IMAGE_URL} alt="Best pre-owned cars" fetchPriority="high" loading="eager" className="w-full h-auto" />
             </div>
+            <p className="text-left flex sm:hidden flex-col items-center text-2xl font-semibold mb-6">
+                <span>Your Trusted Place for Quality</span>
+                <span>Pre-Owned Cars</span>
+            </p>
             <div className="w-full relative hidden sm:flex flex-row items-start h-max">
-                <div className="flex flex-col gap-y-10 mt-10 mb-20">
+                <div className="w-1/2 flex flex-col gap-y-10 mt-10 mb-20">
                     <h3 className="hidden sm:block text-5xl font-bold text-left">
                         Welcome to Ganesh Cars
                     </h3>
-                    <p className="text-left flex flex-col items-start gap-y-2 text-2xl lg:text-3xl xl:text-5xl font-semibold">
+                    <p className="text-left flex flex-col items-start gap-y-2 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold">
                         <span>Your Trusted Place</span>
                         <span>for Quality</span>
                         <span>Pre-Owned Cars</span>
-
                     </p>
                     <button className="px-10 py-3 bg-blue-600 text-xl text-white hover:bg-blue-500 rounded-md w-fit h-fit cursor-pointer" onClick={handleViewAllCars}>Explore Now</button>
                 </div>
-                <div className="h-full flex items-center justify-center">
+                <div className="w-1/2 h-full my-auto">
                     <img src={HERO_IMAGE_URL} alt="Best pre-owned cars" fetchPriority="high" loading="eager" className="h-full w-auto" />
                 </div>
             </div>

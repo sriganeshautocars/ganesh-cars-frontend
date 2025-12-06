@@ -13,6 +13,8 @@ export const SuspenseLoader = () => {
             </div>
             <div className="sm:hidden w-full mt-4">
                 <Shimmer variant="rect" width="100%" height="28vh" />
+                <Shimmer variant="rect" rounded="lg" width="300px" height="36px" className="w-full flex justify-center" />
+                <Shimmer variant="rect" rounded="lg" width="200px" height="36px" className="w-full flex justify-center" />
                 <Shimmer variant="rect" rounded="lg" width="115px" height="36px" className="w-full flex justify-center" />
                 <Shimmer variant="rect" rounded="full" width="90%" height="50px" className="w-full flex justify-center" />
                 <Shimmer variant="rect" count={10} rounded="lg" width="56px" height="56px" className="w-fit grid grid-cols-5 mx-auto gap-2" />
