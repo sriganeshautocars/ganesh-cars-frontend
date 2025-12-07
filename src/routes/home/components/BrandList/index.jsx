@@ -18,7 +18,7 @@ export const BrandList = ({ handleViewAllCars }) => {
     }
 
     const handleFilterNavigation = (value) => {
-        const searchQueryParam = value.trim() ? `search=${value.trim()}` : "";
+        const searchQueryParam = value.trim() ? `?search=${value.trim()}` : "";
         navigate(`/listing${searchQueryParam}`);
     }
 
