@@ -94,3 +94,13 @@ export const checkAuthStatus = async () => {
         console.log('Error while checking auth status', error);
     }
 }
+
+export const updateCarHoldStatus = async (carId, holdStatus) => {
+    try {
+        const response = await axios.patch(`${import.meta.env.VITE_BACKEND_SERVER_URL}/cars/${carId}/hold`, { is_on_hold: holdStatus }, { withCredentials: true })
+        return response;
+    }
+    catch (error) {
+        console.log('Error while updating car details', error);
+    }
+}

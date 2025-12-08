@@ -8,7 +8,7 @@ import {
 } from "./constants";
 
 
-import { addCar, updateCarDetails, uploadImage } from "../../api";
+import { addCar, updateCarDetails, updateCarHoldStatus, uploadImage } from "../../api";
 
 import { ImageInput } from "./ImageInput";
 import { Dropdown } from "../Dropdown";
@@ -188,37 +188,52 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
         }
     }
 
+    const handleHoldStatusChange = async (e) => {
+        try {
+            await updateCarHoldStatus(carDetails?.id, e.target.checked);
+        } catch (error) {
+            console.log('Error while updating hold status', error)
+        } finally {
+            handleClose()
+        }
+    }
+
     return (
         <div className="p-4 h-[90vh] w-[90vw] sm:w-[80vw] mx-auto bg-white rounded shadow relative">
             <div className="pb-10 max-h-full overflow-y-auto">
                 {/* Basic details */}
                 <h2 className="text-lg font-semibold mb-2">Basic Car Details</h2>
-
-                <div>
-                    {thumbNailImage ? (
-                        <>
-                            <img
-                                id="thumbnail"
-                                src={thumbNailImage}
-                                alt={`thumbnail-image`}
-                                className="w-32 h-auto object-cover rounded border"
-                                loading="lazy"
-                            />
+                <div className="flex items-start">
+                    <div>
+                        {thumbNailImage ? (
+                            <>
+                                <img
+                                    id="thumbnail"
+                                    src={thumbNailImage}
+                                    alt={`thumbnail-image`}
+                                    className="w-32 h-auto object-cover rounded border"
+                                    loading="lazy"
+                                />
+                                <ImageInput
+                                    label="Update image"
+                                    id="thumbnailInput"
+                                    onImageChange={handleUploadThumbNailImage}
+                                />
+                            </>
+                        ) :
                             <ImageInput
-                                label="Update image"
+                                label="Upload thumbnail image"
                                 id="thumbnailInput"
                                 onImageChange={handleUploadThumbNailImage}
                             />
-                        </>
-                    ) :
-                        <ImageInput
-                            label="Upload thumbnail image"
-                            id="thumbnailInput"
-                            onImageChange={handleUploadThumbNailImage}
-                        />
+                        }
+                    </div>
+                    {carDetails?.id && <div className="flex items-center gap-x-2 flex-1 justify-center">
+                        <input type="checkbox" checked={carDetails?.is_on_hold} name="hold-status" id="hold-status" className="w-5 h-5" onChange={handleHoldStatusChange} />
+                        <span className="text-xl"> In discussion with customer</span>
+                    </div>
                     }
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {basicData.map(({ label, name, isNumber = false, placeHolder = '', isDropdown = false, options = [] }) => (
                         <div key={name} className="flex flex-col">
@@ -240,7 +255,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                                         id={name}
                                         name={name}
                                         placeholder={placeHolder}
-                                        className="border p-2 rounded-lg focus:outline-blue-500"
+                                        className="border-2 p-2 rounded-lg border-gray-400 focus:outline-blue-500"
                                         onChange={(e) => handleBasicDetailChange(e, isNumber)}
                                         value={basicDetails[name] || ""}
                                     />
@@ -391,7 +406,7 @@ const CarDetailForm = ({ carDetails = {}, handleClose = () => { } }) => {
                                                         id={value}
                                                         name={value}
                                                         placeholder={placeHolder}
-                                                        className="border p-2 rounded-lg focus:outline-blue-500"
+                                                        className="border-2 border-gray-400 p-2 rounded-lg focus:outline-blue-500"
                                                         onChange={(e) => handleSpecChange(sectionKey, value, e.target.value)}
                                                         value={specs?.[value] || specs?.[sectionKey]?.[value] || ""}
                                                     />

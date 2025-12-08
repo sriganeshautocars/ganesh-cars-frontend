@@ -42,12 +42,13 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
 
     return (
         <div
-            className="w-full h-fit border border-gray-300 rounded-lg overflow-hidden relative cursor-pointer"
+            className={`w-full h-fit border border-gray-300 rounded-lg overflow-hidden relative  ${carDetails?.is_on_hold ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
             key={carDetails?.id}
             title={carDetails?.name}
-            onClick={() => handleOpenCarDetailsPage(carDetails?.id)}
+            onClick={() => !carDetails?.is_on_hold && handleOpenCarDetailsPage(carDetails?.id)}
         >
-            <div onClick={handleLikeToggle} className="absolute top-1.5 right-2 z-10 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white">
+            {carDetails?.is_on_hold && <p className="absolute top-1/4 left-[40%] text-xl font-medium text-blue-900">On Hold</p>}
+            <div onClick={() => !carDetails?.is_on_hold && handleLikeToggle()} className={`absolute top-1.5 right-2 z-10 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white ${carDetails?.is_on_hold ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                 {isLiked ? <FcLike size={24} /> : <GoHeart size={24} />}
             </div>
             <img
