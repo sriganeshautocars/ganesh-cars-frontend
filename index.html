@@ -123,8 +123,9 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
-      gtag("config", "G-ENCBM1QXR5");
+      gtag("config", "G-ENCBM1QXR5", {
+        send_page_view: false,
+      });
     </script>
   </head>
   <body>

@@ -13,11 +13,14 @@ const WhyUs = React.lazy(() => import('./routes/whyUs'))
 import { SuspenseLoader } from './components/Loaders/SuspenseLoader';
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { usePageTracking } from './hooks/usePageTracking';
 
 import './App.css'
 
 
 function App() {
+
+  usePageTracking();
 
   return (
 
