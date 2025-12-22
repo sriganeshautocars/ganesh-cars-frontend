@@ -72,7 +72,7 @@ const CarFilters = ({ handleClose }) => {
 
 
     return (
-        <div className="border border-gray-300 p-5 w-full m-0 sm:mr-5 h-auto rounded-md">
+        <div className="border border-gray-300 p-5 w-full m-0 sm:mr-5 h-auto rounded-md bg-white">
             <div className="flex items-center justify-between">
                 <h3 className="flex gap-x-2 items-center text-xl font-semibold mb-4">
                     <span className="block sm:hidden" onClick={handleClose}><BiArrowBack /></span>

@@ -45,9 +45,9 @@ const CarListing = () => {
                 <div className="w-full flex items-center justify-between mb-2">
                     <div className="flex items-center gap-x-2">
                         <div className="block sm:hidden">
-                            <p className="flex items-center gap-x-1 border rounded-md p-2" onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
+                            <p className="flex items-center gap-x-1 border rounded-md p-2 mt-6" onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
                             {showFilters &&
-                                <div className="absolute z-20 w-full max-w-screen top-14 left-0 right-0 bg-white">
+                                <div className="absolute z-30 w-full max-w-screen top-14 left-0 right-0 bg-white">
                                     <CarFilters handleClose={() => setShowFilters(false)} />
                                 </div>
                             }
