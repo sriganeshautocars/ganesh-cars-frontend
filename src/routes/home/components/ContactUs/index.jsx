@@ -11,7 +11,7 @@ const CONTACT_INFO = {
     address: {
         icon: <MdLocationOn size={32} />,
         title: "Office Address",
-        description: "N.H.66, NEar Abharan Motors, N.G.O Colony, Puttur P.O, Udupi - 576105, Karnataka, India"
+        description: "N.H.66, Near Abharan Motors, N.G.O Colony, Puttur P.O, Udupi - 576105, Karnataka, India"
     },
     email: {
         icon: <HiOutlineMail size={32} />,
