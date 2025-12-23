@@ -24,7 +24,7 @@ const CONTACT_INFO = {
         icon: <FiPhoneCall size={32} />,
         title: "Phone Number",
         isMobile: true,
-        description: ['+91 9880041747', '+91 9480661747']
+        description: ['+91 9880041747', '+91 8197560437']
     },
     time: {
         icon: <AiOutlineClockCircle size={32} />,

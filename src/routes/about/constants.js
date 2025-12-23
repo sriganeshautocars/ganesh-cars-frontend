@@ -1,7 +1,7 @@
 export const ABOUT_US_CONTENT = [
-    {
-        title: "About Sri Ganesh Auto Cars",
-        content: `
+  {
+    title: "About Sri Ganesh Auto Cars",
+    content: `
       <b>E</b>stablished in 1997, Sri Ganesh Auto Cars has grown into one of Puttur–Udupi’s most trusted destinations for quality second-hand cars. 
       For more than 27 years, we have helped families, working professionals, and first-time buyers find reliable vehicles that fit their lifestyle and budget.<br/>
 
@@ -9,10 +9,10 @@ export const ABOUT_US_CONTENT = [
       With a strong 4.6/5 rating from 64 customer reviews, we stand out for our honesty, fair pricing, and commitment to customer satisfaction. 
       Conveniently located near Abharana Motors on NH 66, NGO Colony, we continue to serve the region with dedication and an ever-growing inventory of popular brands.
     `,
-    },
-    {
-        title: "Our Commitment to Quality",
-        content: `
+  },
+  {
+    title: "Our Commitment to Quality",
+    content: `
       <b>Q</b>uality is at the heart of everything we do. Each car that enters our showroom is carefully inspected for performance, condition, service history, and overall reliability. 
       Only vehicles that meet our standards are displayed, ensuring customers get genuine value for their investment.<br/>
 
@@ -22,10 +22,10 @@ export const ABOUT_US_CONTENT = [
       Transparency is our core principle. We clearly explain vehicle details, pricing, past usage, and documentation to ensure a smooth, worry-free buying experience. 
       Many customers return for their next upgrade or refer friends and family — a true reflection of the trust we have built in the Udupi market.
     `,
-    },
-    {
-        title: "Visit Us Today",
-        content: `
+  },
+  {
+    title: "Visit Us Today",
+    content: `
       <b>O</b>ur showroom at NH 66, Near Abharana Motors, NGO Colony, Puttur PO 576105, Udupi, Karnataka, is easy to reach and designed to give you a relaxed and comfortable car-buying experience. 
       Whether you’re just exploring options or ready to purchase, our team is always happy to guide you with genuine advice.<br/>
 
@@ -35,5 +35,7 @@ export const ABOUT_US_CONTENT = [
       Visit us today to browse our latest collection, test drive your preferred model, and discover why thousands of customers trust Sri Ganesh Auto Cars for their pre-owned car needs. 
       Drive home with confidence, value, and peace of mind.
     `,
-    },
+  },
 ];
+
+export const SHOWROOM_IMAGE = "https://pub-481985cf3d384e8d8d5df8bde317c06f.r2.dev/cars/Sri-ganesh-auto-cars.jpeg"
