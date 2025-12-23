@@ -29,7 +29,7 @@ const initialFilterState = {
     selectedColors: [],
     selectedSeats: [],
     makeYear: { min: 1990, max: new Date().getFullYear() },
-    selectedSort: 'default', // Initial sort option
+    selectedSort: 'recent', // Initial sort option
     sortOptions: sortOptionsList,
     isLoading: false
 };

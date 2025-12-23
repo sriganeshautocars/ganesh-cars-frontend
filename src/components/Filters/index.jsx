@@ -1,6 +1,6 @@
 
 import { useCarDataStore } from "../../store/useAppStore"; // Adjust path as needed
-import { getPriceInLocalString } from '../../utils';
+import { getPriceInLocalString, getTitleCase } from '../../utils';
 
 import { BiArrowBack } from "react-icons/bi";
 import { FiltersLoader } from "../Loaders/FiltersLoader";
@@ -112,7 +112,7 @@ const CarFilters = ({ handleClose }) => {
                         {availableBrands?.map((brand) => (
                             <div key={brand} className="flex items-center mb-1">
                                 <input type="checkbox" id={`brand-${brand}`} checked={selectedBrands.includes(brand)} onChange={() => toggleBrand(brand)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`brand-${brand}`} className="ml-2 text-sm text-gray-700">{brand}</label>
+                                <label htmlFor={`brand-${brand}`} className="ml-2 text-sm text-gray-700">{getTitleCase(brand)}</label>
                             </div>
                         ))}
                     </div>
