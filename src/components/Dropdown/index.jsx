@@ -2,8 +2,13 @@ import { useState, useRef } from 'react';
 import { useClickOutside } from '../../hooks/useClickOutside';
 
 import { IoCaretDownSharp } from "react-icons/io5";
+import { ArrowDownUp } from 'lucide-react';
 
-export const Dropdown = ({ label, options = [], defaultValue = '', selectedOption = '', onChange, isMandatory = false }) => {
+const ICOM_MAP = {
+    sort: <ArrowDownUp size={18} />
+}
+
+export const Dropdown = ({ label, options = [], defaultValue = '', selectedOption = '', onChange, isMandatory = false, iconName = '' }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -29,7 +34,10 @@ export const Dropdown = ({ label, options = [], defaultValue = '', selectedOptio
                 className={`w-full border-2 p-2 rounded-lg cursor-pointer bg-white flex justify-between items-center ${isOpen ? 'border-blue-500' : 'border-gray-400'}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <span>{selectedLabel}</span>
+                <div className='flex items-center gap-x-2'>
+                    {iconName && ICOM_MAP?.[iconName]}
+                    <span>{selectedLabel}</span>
+                </div>
                 <span className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}>
                     <IoCaretDownSharp />
                 </span>

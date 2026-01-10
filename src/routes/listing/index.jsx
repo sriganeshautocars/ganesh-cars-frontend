@@ -4,27 +4,52 @@ import CarFilters from "../../components/Filters";
 import SortCars from "../../components/SortCars";
 import { CarListingCard } from "../..//components/CarListingCard";
 import { useFetchCars } from "../../hooks/useFetchCars";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { CarListingCardLoader } from "../../components/Loaders/ListingCardLoader";
 
 const CarListing = () => {
     const [showFilters, setShowFilters] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
     const { filteredCars, isLoading } = useCarDataStore();
 
     const params = new URLSearchParams(window.location.search);
     const searchQuery = params.get("search");
 
-    const finalCarList = useMemo(() => {
-        if (searchQuery) {
-            return filteredCars?.filter(car => car?.name?.toLowerCase().includes(searchQuery.toLowerCase()) || car?.brand?.toLowerCase().includes(searchQuery.toLowerCase()));
-        }
-        return filteredCars;
-    }, [filteredCars, searchQuery]);
-
     const navigate = useNavigate();
 
     useFetchCars();
+
+    useEffect(() => {
+        if (searchQuery) {
+            setSearchTerm(searchQuery);
+        }
+    }, [searchQuery]);
+
+    const isMatchingSearchTerm = (car, term) => {
+        const lowerTerm = term?.toLowerCase();
+        return car?.name?.toLowerCase().includes(lowerTerm) ||
+            car?.brand?.toLowerCase().includes(lowerTerm) ||
+            car?.reg_number?.toLowerCase().includes(lowerTerm) ||
+            car?.location?.toLowerCase().includes(lowerTerm);
+    }
+
+    const finalCarList = useMemo(() => {
+        let searchedCars = filteredCars;
+        if (searchTerm) {
+            searchedCars = filteredCars?.filter(car => isMatchingSearchTerm(car, searchTerm));
+        }
+        return searchedCars;
+    }, [filteredCars, searchTerm]);
+
+    const handleSearchTextChange = (e) => {
+        if (e.target.value === "") {
+            setSearchTerm("");
+            navigate("/listing");
+            return;
+        }
+        setSearchTerm(e.target.value);
+    }
 
 
     const openCarDetailsPage = (carId) => {
@@ -32,7 +57,9 @@ const CarListing = () => {
     }
 
     const handleClearSearch = () => {
+        setSearchTerm("");
         navigate("/listing")
+
     }
 
 
@@ -42,20 +69,27 @@ const CarListing = () => {
                 <CarFilters />
             </div>
             <div className="col-span-5 sm:col-span-4">
+                <input type="text" placeholder="Search by name, brand, reg no, location..." value={searchTerm} onChange={handleSearchTextChange} className="mb-4 w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" />
+                <div>
+                    {searchTerm &&
+                        <div className="mb-2 flex items-center gap-x-2">
+                            <p>Results for "<span className="font-medium">{searchTerm}</span>"</p>
+                            <button className="h-full text-blue-500 font-medium cursor-pointer underline" onClick={handleClearSearch}>Clear search</button>
+                        </div>}
+                </div>
                 <div className="w-full flex items-center justify-between mb-2">
                     <div className="flex items-center gap-x-2">
                         <div className="block sm:hidden">
-                            <p className="flex items-center gap-x-1 border rounded-md p-2 mt-6" onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
+                            <p className="flex items-center gap-x-1 border border-gray-500 rounded-md p-2" onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
                             {showFilters &&
                                 <div className="absolute z-30 w-full max-w-screen top-14 left-0 right-0 bg-white">
                                     <CarFilters handleClose={() => setShowFilters(false)} />
                                 </div>
                             }
                         </div>
-                        <h3 className="hidden sm:block font-semibold text-lg">{finalCarList?.length} Cars</h3>
+                        <h3 className="hidden sm:block font-semibold text-lg">{`${finalCarList?.length} Car${finalCarList?.length !== 1 ? 's' : ''}`}</h3>
                     </div>
-                    <div className="flex items-center gap-x-2">
-                        {searchQuery && <button className="text-blue-500 cursor-pointer" onClick={handleClearSearch}>Clear search</button>}
+                    <div className="flex items-end gap-x-2">
                         <SortCars />
                     </div>
                 </div>

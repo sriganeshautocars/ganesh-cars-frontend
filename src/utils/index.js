@@ -69,3 +69,14 @@ export const handleMailEnquiry = () => {
     const recipient = 'sriganeshautocarsudupi@gmail.com';
     window.location.href = `mailto:${recipient}`;
 }
+
+export const handleWhatsappEnquiry = (message) => {
+    const defaultMessage = `Hello,
+I would like to inquire about your services.`;
+
+    const messageToSend = message ? message : defaultMessage;
+
+    const encoded = encodeURIComponent(messageToSend);
+    const url = `${WHATSAPP_API_URL}&text=${encoded}`;
+    window.open(url, '_blank');
+}

@@ -20,7 +20,7 @@ const SortCars = () => {
     return (
         <div className="w-56">
             <Dropdown
-                label="Sort by:"
+                iconName='sort'
                 options={sortOptions}
                 selectedOption={selectedSort}
                 defaultValue={sortOptions[2]?.value}
