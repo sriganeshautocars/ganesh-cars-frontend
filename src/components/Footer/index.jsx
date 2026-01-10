@@ -17,7 +17,7 @@ export const Footer = () => {
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Explore</h3>
             <Link to="/listing">Buy pre-owned car</Link>
-            <span onClick={handleSellingEnquiry} className="cursor-pointer">Sell used car</span>
+            <span onClick={handleSellingEnquiry} className="cursor-pointer">Sell/Exchange my car</span>
         </div>
         <div className="flex flex-col items-start justify-start gap-y-2">
             <h3 className="font-semibold text-lg">Help and Support</h3>

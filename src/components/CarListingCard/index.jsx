@@ -1,4 +1,4 @@
-import { getNumberInStringFormat, getOrdinalNumber } from "../../utils";
+import { getNumberInStringFormat, getOrdinalNumber, getTitleCase } from "../../utils";
 import { GrLocation } from "react-icons/gr";
 import { FcLike } from "react-icons/fc";
 import { GoHeart } from "react-icons/go";
@@ -66,8 +66,8 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
                     <div className="flex flex-col items-start justify-start font-medium text-sm">
                         <p className="flex items-center justify-start gap-x-1.5">
                             <span>{carDetails?.reg_year}</span>
-                            <span>{carDetails?.brand}</span>
-                            <span>{carDetails?.name}</span>
+                            <span>{getTitleCase(carDetails?.brand)}</span>
+                            <span>{getTitleCase(carDetails?.name)}</span>
                         </p>
                         <span className="font-normal text-xs">
                             {carDetails?.variant}

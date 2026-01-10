@@ -1450,7 +1450,7 @@ export const TESTIMONIALS = [
     },
 ];
 
-const WHATSAPP_NUMBER = "919880041747";
+const WHATSAPP_NUMBER = "918197560437";
 
 export const WHATSAPP_API_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`;
 

@@ -48,6 +48,7 @@ export const CarOverview = ({ carDetails }) => {
                     value={DROPDOWN_VALUES_MAP[carDetails?.body_type] || carDetails?.body_type}
                 />
                 <OverviewItem
+                    isRegNumber={true}
                     icon="reg_number"
                     title="Reg number"
                     value={carDetails?.reg_number}

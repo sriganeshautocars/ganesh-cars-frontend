@@ -13,7 +13,7 @@ export const HeroSection = ({ handleViewAllCars }) => {
             <div className="w-full relative hidden sm:flex flex-row items-start h-max">
                 <div className="w-1/2 flex flex-col gap-y-10 mt-10 mb-20">
                     <h3 className="hidden sm:block text-5xl font-bold text-left">
-                        Welcome to Ganesh Cars
+                        Welcome to Sri Ganesh Auto Cars
                     </h3>
                     <p className="text-left flex flex-col items-start gap-y-2 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold">
                         <span>Your Trusted Place</span>

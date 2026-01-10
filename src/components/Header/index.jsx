@@ -37,7 +37,7 @@ export const Header = () => {
                     className="flex items-center gap-1 text-white bg-transparent border-0 cursor-pointer"
                     type="button"
                 >
-                    Sell
+                    Sell/Exchange
                 </button>
                 <p className="flex items-center gap-1 text-white">Wishlist</p>
             </div>

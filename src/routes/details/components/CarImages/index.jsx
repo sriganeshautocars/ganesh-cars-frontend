@@ -6,15 +6,12 @@ export const CarImages = ({ carDetails }) => {
     const [imageIndex, setImageIndex] = useState(0);
 
     useEffect(() => {
-        setImageList([
-            carDetails?.thumbnail
-        ]);
+        setImageList([carDetails?.thumbnail]);
     }, [carDetails?.thumbnail]);
 
     useEffect(() => {
-        setImageIndex(0)
-    }, [imageList])
-
+        setImageIndex(0);
+    }, [imageList]);
 
     const handleNextClick = () => {
         if (imageIndex === imageList.length - 1) return;
@@ -52,57 +49,60 @@ export const CarImages = ({ carDetails }) => {
                     </div>
                 )}
             </div>
-            <div className="w-full flex items-center justify-center gap-x-8 py-3">
-                {carDetails?.images?.exterior?.length &&
-                    <div>
-                        <div
-                            className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
-                            onClick={() => setImageList(carDetails?.images?.exterior || [])}
-                        >
-                            <img
-                                src={carDetails?.images?.exterior?.[0]}
-                                alt={carDetails?.name}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        </div>
-                        <p className="text-center text-gray-300">Exterior</p>
+            {(carDetails?.images?.exterior?.length ||
+                carDetails?.images?.interior?.length ||
+                carDetails?.images?.tyres?.length) && (
+                    <div className="w-full flex items-center justify-center gap-x-8 py-3">
+                        {carDetails?.images?.exterior?.length && (
+                            <div>
+                                <div
+                                    className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
+                                    onClick={() => setImageList(carDetails?.images?.exterior || [])}
+                                >
+                                    <img
+                                        src={carDetails?.images?.exterior?.[0]}
+                                        alt={carDetails?.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <p className="text-center text-gray-300">Exterior</p>
+                            </div>
+                        )}
+                        {carDetails?.images?.interior?.length && (
+                            <div>
+                                <div
+                                    className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
+                                    onClick={() => setImageList(carDetails?.images?.interior || [])}
+                                >
+                                    <img
+                                        src={carDetails?.images?.interior?.[0]}
+                                        alt={carDetails?.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <p className="text-center text-gray-300">Interior</p>
+                            </div>
+                        )}
+                        {carDetails?.images?.tyres?.length && (
+                            <div>
+                                <div
+                                    className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
+                                    onClick={() => setImageList(carDetails?.images?.tyres || [])}
+                                >
+                                    <img
+                                        src={carDetails?.images?.tyres?.[0]}
+                                        alt={carDetails?.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <p className="text-center text-gray-300">Tyres</p>
+                            </div>
+                        )}
                     </div>
-                }
-                {carDetails?.images?.interior?.length &&
-                    <div>
-                        <div
-                            className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
-                            onClick={() => setImageList(carDetails?.images?.interior || [])}
-                        >
-                            <img
-                                src={carDetails?.images?.interior?.[0]}
-                                alt={carDetails?.name}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        </div>
-                        <p className="text-center text-gray-300">Interior</p>
-                    </div>
-                }
-                {carDetails?.images?.tyres?.length &&
-                    <div>
-                        <div
-                            className="w-18 h-18 rounded-full overflow-hidden cursor-pointer border-3 border-blue-700"
-                            onClick={() => setImageList(carDetails?.images?.tyres || [])}
-                        >
-                            <img
-                                src={carDetails?.images?.tyres?.[0]}
-                                alt={carDetails?.name}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        </div>
-                        <p className="text-center text-gray-300">Tyres</p>
-                    </div>
-                }
-            </div>
-
+                )}
         </div>
-    )
-}
+    );
+};

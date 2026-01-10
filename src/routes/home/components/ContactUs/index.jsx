@@ -29,7 +29,7 @@ const CONTACT_INFO = {
     time: {
         icon: <AiOutlineClockCircle size={32} />,
         title: "Working Hours",
-        description: "Mon - Sat: 9:00 AM - 6:00 PM"
+        description: "Mon - Sat: 9:30 AM - 8:00 PM"
     }
 }
 
