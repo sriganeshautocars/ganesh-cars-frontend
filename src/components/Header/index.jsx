@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { WHATSAPP_API_URL } from "../../constants";
 import { handleSellingEnquiry } from "../../utils";
 import { trackEvent } from "../../utils/gaEvents";
-import Logo from '../../assets/sri-ganesh-logo-white.png';
+import Logo from '../../assets/sri-ganesh-logo.png';
 
 import { Phone, Heart, HandCoins, UserStar } from "lucide-react";
 import { useCarDataStore } from "../../store/useAppStore";
