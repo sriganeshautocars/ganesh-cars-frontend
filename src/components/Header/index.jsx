@@ -1,11 +1,22 @@
+import { useEffect } from "react";
+
 import { WHATSAPP_API_URL } from "../../constants";
 import { handleSellingEnquiry } from "../../utils";
 import { trackEvent } from "../../utils/gaEvents";
 import Logo from '../../assets/sri-ganesh-logo-white.png';
 
 import { Phone, Heart, HandCoins, UserStar } from "lucide-react";
+import { useCarDataStore } from "../../store/useAppStore";
+
 
 export const Header = () => {
+    const { shortlistedCarsCount = 0, setShortlistedCarsCount } = useCarDataStore();
+
+    useEffect(() => {
+        const likedCars = JSON.parse(localStorage.getItem("liked_cars")) || [];
+        setShortlistedCarsCount(likedCars.length);
+    }, []);
+
     const handleTracking = () => {
         trackEvent("contact_seller", {
             method: "whatsapp",
@@ -15,7 +26,6 @@ export const Header = () => {
     return (
         <div className="sticky top-0 w-full z-100 px-2 sm:px-4 flex items-center justify-between bg-blue-600 shadow-blue-100 shadow-sm">
             <a href="/" aria-label="Ganesh Cars Home" className="flex items-center gap-2">
-                {/* <span className="font-bold text-xl sm:text-2xl text-white">Ganesh</span> */}
                 <img src={Logo} alt="Ganesh Cars Logo" className="w-auto h-12" />
             </a>
             <div className="flex items-center gap-2 py-3">
@@ -28,10 +38,15 @@ export const Header = () => {
                         <HandCoins size={20} color="white" />
                         <span className="text-white text-xs font-medium">Sell/Exchange</span>
                     </button>
-                    <button className="flex flex-col items-center cursor-pointer">
+                    <a href="/wishlist" className="flex flex-col items-center cursor-pointer relative">
+                        {shortlistedCarsCount > 0 && (
+                            <span className="absolute -top-2 right-2 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full">
+                                {shortlistedCarsCount}
+                            </span>
+                        )}
                         <Heart size={20} color="white" />
                         <span className="text-white text-xs font-medium">Shortlisted</span>
-                    </button>
+                    </a>
                 </div>
                 <a
                     href={`${WHATSAPP_API_URL}&text=Hi%2C%20I%20am%20interested%20in%20one%20of%20your%20cars`}
@@ -55,58 +70,7 @@ export const Header = () => {
                     <span className="text-xs hidden sm:block">Call us at</span>
                     <span className="hidden sm:block">819-756-0437</span>
                 </a>
-                {/* <p className="flex items-center gap-1 text-white">Wishlist</p> */}
             </div>
         </div>
     )
 }
-
-export const SriGaneshLogo = ({ width = 200, height = 60 }) => {
-    return (
-        <svg
-            viewBox="0 0 200 60"
-            width={width}
-            height={height}
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            {/* Background */}
-            <rect width="200" height="60" fill="#ffffff" rx="4" />
-
-            {/* Car icon (simplified) */}
-            <g transform="translate(15, 15)">
-                {/* Car body */}
-                <ellipse cx="12" cy="18" rx="10" ry="6" fill="#1e40af" />
-                <rect x="5" y="12" width="14" height="8" rx="2" fill="#1e40af" />
-
-                {/* Windows */}
-                <rect x="7" y="13" width="4" height="3" fill="#93c5fd" opacity="0.7" />
-                <rect x="13" y="13" width="4" height="3" fill="#93c5fd" opacity="0.7" />
-
-                {/* Wheels */}
-                <circle cx="8" cy="24" r="2.5" fill="#1e40af" />
-                <circle cx="16" cy="24" r="2.5" fill="#1e40af" />
-            </g>
-
-            {/* Text */}
-            <text
-                x="50"
-                y="24"
-                fontFamily="Arial, sans-serif"
-                fontSize="13"
-                fontWeight="bold"
-                fill="#1e40af"
-            >
-                Sri Ganesh
-            </text>
-            <text
-                x="50"
-                y="42"
-                fontFamily="Arial, sans-serif"
-                fontSize="11"
-                fill="#1e40af"
-            >
-                Auto Cars
-            </text>
-        </svg>
-    );
-};

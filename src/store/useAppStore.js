@@ -121,6 +121,7 @@ export const useCarDataStore = create((set, get) => ({
     availableColors: AVAILABLE_COLORS,
     availableSeats: [],
     initialMakeYearRange: { min: 1900, max: new Date().getFullYear() },
+    shortlistedCarsCount: 0,
 
     // --- Internal action to update filtered cars ---
     _updateFilteredCars: () => {
@@ -256,6 +257,10 @@ export const useCarDataStore = create((set, get) => ({
         const availableSeats = [...new Set(cars?.map(car => car?.no_of_seats))].sort((a, b) => a - b)?.filter(seat => !!seat);
         set({ allCars: cars, filteredCars: cars, initialMakeYearRange: { min: minMakeYear, max: maxMakeYear }, availableBrands, availableBodyTypes, availableOwnerships, availableSeats });
         get()._updateFilteredCars();
+    },
+
+    setShortlistedCarsCount: (count) => {
+        set({ shortlistedCarsCount: count });
     },
 
     setIsLoading: (isLoading) => {

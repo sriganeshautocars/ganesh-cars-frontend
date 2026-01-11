@@ -4,9 +4,12 @@ import { FcLike } from "react-icons/fc";
 import { GoHeart } from "react-icons/go";
 import { useEffect, useState } from "react";
 import { DROPDOWN_VALUES_MAP } from "../../constants";
+import { useCarDataStore } from "../../store/useAppStore";
 
 export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
     const [isLiked, setIsLiked] = useState(false);
+
+    const { setShortlistedCarsCount } = useCarDataStore();
 
     // Helper function to get liked car IDs from localStorage
     const getLikedCarsFromStorage = () => {
@@ -37,6 +40,7 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
             updatedLikedCarIds = [...likedCarIds, carDetails?.id];
             setIsLiked(true);
         }
+        setShortlistedCarsCount(updatedLikedCarIds.length);
         saveLikedCarsToStorage(updatedLikedCarIds);
     };
 
@@ -50,7 +54,7 @@ export const CarListingCard = ({ carDetails, handleOpenCarDetailsPage }) => {
             {carDetails?.is_on_hold && <div className="absolute top-0 right-0 left-0 bottom-0 bg-gray-400/50 cursor-not-allowed z-20">
                 <p className="absolute top-0 left-0 rounded-br-lg p-4 bg-blue-400 text-white font-medium">On Hold</p>
             </div>}
-            <div onClick={() => !carDetails?.is_on_hold && handleLikeToggle()} className={`absolute top-1.5 right-2 z-10 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white ${carDetails?.is_on_hold ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+            <div onClick={(e) => !carDetails?.is_on_hold && handleLikeToggle(e)} className={`absolute top-1.5 right-2 z-10 cursor-pointer flex items-center justify-center w-8 h-8 rounded-full bg-white ${carDetails?.is_on_hold ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
                 {isLiked ? <FcLike size={24} /> : <GoHeart size={24} />}
             </div>
             <img

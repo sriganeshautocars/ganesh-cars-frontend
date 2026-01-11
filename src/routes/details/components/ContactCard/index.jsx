@@ -5,10 +5,13 @@ import { FcLike } from "react-icons/fc"
 import { GoHeart } from "react-icons/go"
 import { DROPDOWN_VALUES_MAP, WHATSAPP_API_URL } from "../../../../constants"
 import { getNumberInLocalString, getNumberInStringFormat, getOrdinalNumber } from "../../../../utils"
+import { useCarDataStore } from "../../../../store/useAppStore"
 
 
 export const ContactCard = ({ carDetails }) => {
     const [isLiked, setIsLiked] = useState(false);
+
+    const { setShortlistedCarsCount } = useCarDataStore();
 
     useEffect(() => {
         const likedCarIds = getLikedCarsFromStorage();
@@ -27,6 +30,7 @@ export const ContactCard = ({ carDetails }) => {
             updatedLikedCarIds = [...likedCarIds, carDetails?.id];
             setIsLiked(true);
         }
+        setShortlistedCarsCount(updatedLikedCarIds.length);
         saveLikedCarsToStorage(updatedLikedCarIds);
     };
 
@@ -42,7 +46,7 @@ export const ContactCard = ({ carDetails }) => {
     };
 
     const getWhatsappText = (car) => {
-        return encodeURI(`Hello, I am interested in the car ${car?.reg_year} ${car?.brand} ${car?.name} ${car?.variant} listed at ₹${getNumberInStringFormat(car?.price)}. Please provide more details.`)
+        return encodeURI(`Hello, I am interested in the car ${car?.reg_year} ${car?.brand} ${car?.name} ${car?.variant} having registration number of ${car?.reg_number} listed at ₹${getNumberInStringFormat(car?.price)}. Please provide more details.`)
     }
     return (
         <div className="w-full h-min shadow rounded-lg p-5 relative grid gap-4">

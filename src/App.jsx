@@ -4,6 +4,7 @@ const Home = React.lazy(() => import('./routes/home'));
 const Dashboard = React.lazy(() => import('./routes/dashboard'))
 const CarListing = React.lazy(() => import('./routes/listing'))
 const CarDetails = React.lazy(() => import('./routes/details'))
+const WishlistPage = React.lazy(() => import('./routes/wishlist'))
 const Login = React.lazy(() => import('./routes/login'))
 const AboutUS = React.lazy(() => import('./routes/about'))
 const PrivacyPolicy = React.lazy(() => import('./routes/privacyPolicy'))
@@ -33,6 +34,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/listing" element={<CarListing />} />
             <Route path="/details/:id" element={<CarDetails />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/why-us" element={<WhyUs />} />
             <Route path="/about-us" element={<AboutUS />} />
