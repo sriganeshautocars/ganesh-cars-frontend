@@ -4,6 +4,8 @@ import { getPriceInLocalString, getTitleCase } from '../../utils';
 
 import { BiArrowBack } from "react-icons/bi";
 import { FiltersLoader } from "../Loaders/FiltersLoader";
+import { RangeSlider } from "../RangeSlider";
+
 
 const CarFilters = ({ handleClose }) => {
     const {
@@ -74,9 +76,17 @@ const CarFilters = ({ handleClose }) => {
     return (
         <div className="border border-gray-300 p-5 w-full m-0 sm:mr-5 h-auto rounded-md bg-white">
             <div className="flex items-center justify-between">
-                <h3 className="flex gap-x-2 items-center text-xl font-semibold mb-4">
-                    <span className="block sm:hidden" onClick={handleClose}><BiArrowBack /></span>
-                    Filters
+                <h3 className="w-full flex justify-between gap-x-2 items-center text-xl font-semibold mb-4">
+                    <div className="flex items-center gap-2">
+                        <span className="block sm:hidden" onClick={handleClose}><BiArrowBack /></span>
+                        <span>Filters</span>
+                    </div>
+                    <button
+                        onClick={clearFilters}
+                        className="font-medium text-base text-blue-500 underline"
+                    >
+                        Clear Filters
+                    </button>
                 </h3>
             </div>
             {isLoading
@@ -92,16 +102,14 @@ const CarFilters = ({ handleClose }) => {
                                 <span>Min: {getPriceInLocalString(budget?.min)}</span>
                                 <span>Max: {getPriceInLocalString(budget?.max)}</span>
                             </div>
-                            <input
-                                type="range"
-                                id="maxBudget"
+                            <RangeSlider
                                 name="maxBudget"
-                                value={budget.max}
+                                id="maxBudget"
+                                min={0}
+                                max={10000000}
+                                step={1000}
+                                initialValue={budget?.max}
                                 onChange={handleBudgetChange}
-                                min="0"
-                                max="10000000"
-                                step="50000"
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500"
                             />
                         </div>
                     </div>
@@ -139,7 +147,7 @@ const CarFilters = ({ handleClose }) => {
                                 <span>Max: {Number(kmDriven.max).toLocaleString('en-IN')} km</span>
                                 <span className="text-xs text-gray-500">(100k)</span>
                             </div>
-                            <input type="range" id="maxKm" name="maxKm" value={kmDriven.max} onChange={handleKmDrivenChange} min="0" max="100000" step="1000" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500" />
+                            <RangeSlider id="maxKm" name="maxKm" value={kmDriven.max} onChange={handleKmDrivenChange} min="0" max="100000" step="1000" />
                         </div>
                     </div>
                     <hr className="my-4" />
@@ -214,16 +222,10 @@ const CarFilters = ({ handleClose }) => {
                                 <span>Max: {makeYear.max}</span>
                                 <span className="text-xs text-gray-500">({initialMakeYearRange?.max})</span>
                             </div>
-                            <input type="range" id="maxMakeYear" name="maxMakeYear" value={makeYear.max} onChange={handleMakeYearChange} min={initialMakeYearRange?.min} max={initialMakeYearRange?.max} step="1" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-500" />
+                            <RangeSlider id="maxMakeYear" name="maxMakeYear" value={makeYear.max} onChange={handleMakeYearChange} min={initialMakeYearRange?.min} max={initialMakeYearRange?.max} step="1" />
                         </div>
                     </div>
                     <hr className="mt-4" />
-                    <button
-                        onClick={clearFilters}
-                        className="mt-5 py-2.5 px-4 bg-red-500 text-white border-none rounded-md cursor-pointer w-full hover:bg-red-600 transition-colors text-sm font-medium"
-                    >
-                        Clear All Filters
-                    </button>
                 </>
             }
         </div>
