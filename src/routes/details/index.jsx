@@ -35,7 +35,7 @@ const CarDetails = () => {
 
     return (
         <div className="w-full sm:max-w-[1280px] px-4">
-            {isLoading ?
+            {(isLoading || !carDetails?.id) ?
                 <CarDetailsLoader />
                 :
                 <>

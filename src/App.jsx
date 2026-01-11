@@ -17,6 +17,7 @@ import { Footer } from './components/Footer'
 import { usePageTracking } from './hooks/usePageTracking';
 
 import './App.css'
+import { ContactWidget } from './components/ContactWidget';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         </Suspense>
       </div>
       <Footer />
+      <ContactWidget />
     </div>
   )
 }

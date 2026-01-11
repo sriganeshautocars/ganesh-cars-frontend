@@ -34,7 +34,7 @@ export const CarOverview = ({ carDetails }) => {
                 />
                 <OverviewItem
                     icon="make"
-                    title="Make year"
+                    title="Mfg year"
                     value={carDetails?.make_year}
                 />
                 <OverviewItem

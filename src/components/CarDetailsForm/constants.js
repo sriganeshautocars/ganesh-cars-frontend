@@ -83,7 +83,7 @@ export const basicData = [
     { label: "Ownership", name: "ownership", isMandatory: true, isDropdown: true, options: [{ label: '1st', value: 1 }, { label: '2nd', value: 2 }, { label: '3rd', value: 3 }, { label: '4th', value: 4 }, { label: '5th', value: 5 }] },
     { label: "Engine Displacement", name: "engine_displacement", isMandatory: true, isNumber: true, placeHolder: "Eg. 1497 cc" },
     { label: "Highway Mileage", name: "highway_mileage", isMandatory: true, isNumber: true, placeHolder: "Eg. 18 kmpl" },
-    { label: "Make Year", name: "make_year", isMandatory: true, isNumber: true, placeHolder: "Eg. 2020" },
+    { label: "Mfg Year", name: "make_year", isMandatory: true, isNumber: true, placeHolder: "Eg. 2020" },
     { label: "Reg Year", name: "reg_year", isMandatory: true, isNumber: true, placeHolder: "Eg. 2021" },
 
 ];
