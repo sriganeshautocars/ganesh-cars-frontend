@@ -37,7 +37,7 @@ export const ContactUs = () => {
     const [ref, inView] = useInView({ threshold: 0.2, once: true });
 
     return (
-        <div ref={ref} className={`w-full mb-3 sm:mb-0 transform transition-all duration-700 ease-out ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+        <div ref={ref} className={`w-full mt-4 mb-3 sm:mb-0 transform transition-all duration-700 ease-out ${inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
             <h3 className="font-bold text-xl">Contact Us</h3>
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 py-2 gap-6 sm:gap-10">
                 <MapItem />

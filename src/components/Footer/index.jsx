@@ -45,7 +45,7 @@ export const Footer = () => {
             </div>
 
             <div className="flex items-center justify-start gap-x-2 mt-2">
-                <a href="https://www.facebook.com/" aria-label="Open Facebook" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><ImFacebook2 /></a>
+                <a href="https://www.facebook.com/sriganesh.autocars/" aria-label="Open Facebook" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><ImFacebook2 /></a>
                 <a href="https://www.instagram.com/sri_ganesh_auto_cars/" aria-label="Open Instagram" target="_blank" className="p-2 border rounded-lg hover:bg-blue-200"><GrInstagram /></a>
                 <a href="https://www.twitter.com/" target="_blank" aria-label="Open Twitter" className="p-2 border rounded-lg hover:bg-blue-200"><BsTwitterX /></a>
             </div>

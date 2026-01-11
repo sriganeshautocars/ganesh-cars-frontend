@@ -22,7 +22,6 @@ const Home = () => {
     const [budgetRef, budgetInView] = useInView({ threshold: 0.2, once: true });
     const [fuelTypeRef, fuelTypeInView] = useInView({ threshold: 0.2, once: true });
     const [ownershipRef, ownershipInView] = useInView({ threshold: 0.2, once: true });
-    const [testimonialRef, testimonialInView] = useInView({ threshold: 0.2, once: true });
 
     const { allCars, isLoading } = useCarDataStore();
 
@@ -44,12 +43,6 @@ const Home = () => {
 
     const handleViewAllCarsClick = () => {
         navigate("/listing")
-    }
-
-    const getReviewContent = (review) => {
-        if (review?.length > 90)
-            return review.slice(0, 90) + "..."
-        return review
     }
 
     return (
@@ -113,41 +106,6 @@ const Home = () => {
                                     )}
                                 />
                         }
-                    </div>
-                    <div ref={testimonialRef} className={`w-full my-4 transform transition-all duration-700 ease-out ${testimonialInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
-                        <h3 className="font-bold text-xl">Customer Testimonials</h3>
-                        <div className="flex flex-col sm:flex-row items-center justify-stretch gap-y-2 sm:gap-x-2 py-2">
-                            {
-                                TESTIMONIALS.slice(0, 4).map((testimonial, index) => {
-                                    return (
-                                        <div className="w-full sm:w-72 h-auto border border-gray-300 rounded-lg overflow-hidden flex flex-col items-start justify-start" key={index}>
-                                            <img
-                                                src={testimonial?.image}
-                                                className="w-full h-48 object-cover"
-                                                width={100}
-                                                height={100}
-                                                alt="Customer Image"
-                                                loading="lazy"
-                                            />
-                                            <div className="px-3 py-2">
-                                                <p>{getReviewContent(testimonial?.review)}</p>
-                                                <div className="text-sm font-semibold flex justify-between mt-2">
-                                                    <p className="flex flex-col items-start">
-                                                        <span className="text-lg">
-                                                            {testimonial?.name}
-                                                        </span>
-                                                        <span className="text-sm">
-                                                            {testimonial?.location}
-                                                        </span>
-                                                    </p>
-                                                    <span className="text-green-900">{testimonial?.rating}/5</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
                     </div>
                     <ContactUs />
                 </div>
