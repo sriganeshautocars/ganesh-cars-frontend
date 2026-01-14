@@ -87,7 +87,7 @@ const CarListing = () => {
                                 </div>
                             }
                         </div>
-                        <h3 className="hidden sm:block font-semibold text-lg">{`${finalCarList?.length} Car${finalCarList?.length !== 1 ? 's' : ''}`}</h3>
+                        <h3 className="hidden sm:block font-semibold text-lg">{`${finalCarList?.length || 0} Car${finalCarList?.length !== 1 ? 's' : ''}`}</h3>
                     </div>
                     <div className="flex items-end gap-x-2">
                         <SortCars />

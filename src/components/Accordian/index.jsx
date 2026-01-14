@@ -3,7 +3,7 @@ import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 
 export const Accordian = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const { title, content } = props;
 
     return (
