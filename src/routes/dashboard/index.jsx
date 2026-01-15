@@ -103,7 +103,7 @@ const Dashboard = () => {
             </div>
             {
                 showModal && (
-                    <Modal content={<CarDetailsForm carDetails={selectedCarDetails} handleClose={handleClose} />} handleClose={handleCloseModal} />
+                    <Modal content={<CarDetailsForm carId={selectedCarDetails?.id} handleClose={handleClose} />} handleClose={handleCloseModal} />
                 )
             }
             {
