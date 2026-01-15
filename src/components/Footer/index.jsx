@@ -32,7 +32,7 @@ export const Footer = () => {
             <div className="flex gap-x-2 items-center" onClick={() => handleWhatsappEnquiry()}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 sm:mr-2"
+                    className="h-4 w-4"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                 >
