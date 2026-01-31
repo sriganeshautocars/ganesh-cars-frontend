@@ -26,10 +26,10 @@ export const Header = () => {
     return (
         <div className="sticky top-0 w-full z-100 px-2 sm:px-4 flex items-center justify-between bg-blue-600 shadow-blue-100 shadow-sm">
             <a href="/" aria-label="Ganesh Cars Home" className="flex items-center gap-2">
-                <img src={Logo} alt="Ganesh Cars Logo" className="w-auto h-12" />
+                <img src={Logo} alt="Ganesh Cars Logo" className="w-auto h-10 sm:h-12" />
             </a>
             <div className="flex items-center gap-2 py-3">
-                <div className="flex items-center gap-x-2 mr-4 sm:mr-10">
+                <div className="flex items-center gap-x-2 mr-3 sm:mr-10">
                     <a href="/reviews" className="flex flex-col items-center cursor-pointer">
                         <UserStar size={20} color="white" />
                         <span className="text-white text-xs font-medium">Reviews</span>
