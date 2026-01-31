@@ -50,7 +50,7 @@ const Home = () => {
             <div className="w-full flex flex-col items-center justify-start ">
                 <div className="w-full flex flex-col items-center bg-gradient-to-t from-gray-50 via-blue-200 to-blue-600">
                     <HeroSection handleViewAllCars={handleViewAllCarsClick} />
-                    <BrandList handleViewAllCars={handleViewAllCarsClick} />
+                    {/*<BrandList handleViewAllCars={handleViewAllCarsClick} />*/}
                 </div>
                 <div className="w-full sm:max-w-[1280px] px-4 mt-2">
                     <div ref={budgetRef} className={`w-full mt-4 transform transition-all duration-700 ease-out ${budgetInView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
