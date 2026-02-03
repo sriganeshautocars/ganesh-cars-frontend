@@ -1,4 +1,4 @@
-/* Remove default appearance */
+/* ===== Single Range Slider ===== */
 .custom-range {
   -webkit-appearance: none;
   appearance: none;
@@ -10,7 +10,6 @@
   cursor: pointer;
 }
 
-/* Chrome, Edge, Safari */
 .custom-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -20,9 +19,9 @@
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  margin-top: -2px;
 }
 
-/* Firefox */
 .custom-range::-moz-range-thumb {
   width: 16px;
   height: 16px;
@@ -30,18 +29,110 @@
   border-radius: 50%;
   border: none;
   cursor: pointer;
+  margin-top: -2px;
 }
 
-/* Firefox track */
 .custom-range::-moz-range-track {
   height: 6px;
   background: #d3d3d3;
   border-radius: 4px;
 }
 
-/* Filled part in Firefox */
 .custom-range::-moz-range-progress {
   height: 6px;
   background: #1e88e5;
   border-radius: 4px;
+}
+
+/* ===== Double Range Slider ===== */
+.double-range-slider {
+  width: 100%;
+}
+
+.range-values {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e88e5;
+}
+
+.range-value {
+  min-width: 40px;
+  text-align: center;
+}
+
+.range-dash {
+  color: #666;
+}
+
+.range-track-container {
+  position: relative;
+  width: 100%;
+  height: 6px;
+}
+
+.range-track {
+  position: absolute;
+  inset: 0;
+  height: 6px;
+  background: #d3d3d3;
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.range-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 6px;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+  z-index: 5;
+}
+
+.range-input::-webkit-slider-runnable-track,
+.range-input::-moz-range-track {
+  background: transparent;
+  border: none;
+  height: 6px;
+  border-radius: 4px;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #1e88e5;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  pointer-events: all;
+  transform: translateY(calc(-50% + 7px));
+}
+
+.range-input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #1e88e5;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  pointer-events: all;
+  transform: translateY(calc(-50% + 7px));
+}
+
+.range-input.min-range {
+  z-index: 6;
+}
+
+.range-input.max-range {
+  z-index: 5;
 }

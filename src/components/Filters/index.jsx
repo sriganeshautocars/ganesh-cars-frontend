@@ -5,6 +5,7 @@ import { getPriceInLocalString, getTitleCase } from '../../utils';
 import { BiArrowBack } from "react-icons/bi";
 import { FiltersLoader } from "../Loaders/FiltersLoader";
 import { RangeSlider } from "../RangeSlider";
+import { DROPDOWN_VALUES_MAP } from "../../constants";
 
 
 const CarFilters = ({ handleClose }) => {
@@ -16,7 +17,6 @@ const CarFilters = ({ handleClose }) => {
         selectedFuelTypes,
         selectedBodyTypes,
         selectedOwnerships,
-        // selectedColors,
         selectedSeats,
         makeYear,
         availableBrands,
@@ -24,7 +24,6 @@ const CarFilters = ({ handleClose }) => {
         availableFuelTypes,
         availableBodyTypes,
         availableOwnerships,
-        // availableColors,
         availableSeats,
         initialMakeYearRange,
         setBudget,
@@ -34,41 +33,29 @@ const CarFilters = ({ handleClose }) => {
         toggleFuelType,
         toggleBodyType,
         toggleOwnership,
-        // toggleColor,
         toggleSeat,
         setMakeYear,
         clearFilters,
         isLoading,
     } = useCarDataStore();
 
-    const handleBudgetChange = (e) => {
-        const { name, value: rawValue } = e.target;
-        const newMaxValue = parseInt(rawValue, 10);
-
-        // Assuming min budget is always 0 or your predefined store minimum
-        // For this setup, we'll use 0 as the fixed minimum.
-        // The store's initialFilterState.budget.min could also be used if it's not always 0.
-        if (name === 'maxBudget') {
-            setBudget(0, newMaxValue);
+    const handleBudgetChange = ({ name, value }) => {
+        if (name === 'budget') {
+            setBudget(0, value);
         }
     };
 
-    const handleKmDrivenChange = (e) => {
-        const { name, value: rawValue } = e.target;
-        const newMaxValue = parseInt(rawValue, 10);
-
-        // Assuming min kmDriven is always 0 or your predefined store minimum
-        if (name === 'maxKm') {
-            setKmDriven(0, newMaxValue);
+    const handleKmDrivenChange = ({ name, value }) => {
+        if (name === 'kmDriven') {
+            setKmDriven(0, value);
         }
     };
 
-    const handleMakeYearChange = (e) => {
-        const { name, value: rawValue } = e.target;
-        const newMaxValue = parseInt(rawValue, 10);
-
-        if (name === 'maxMakeYear') {
-            setMakeYear(initialMakeYearRange.min, newMaxValue); // Min year is fixed from initial range
+    const handleMakeYearChange = ({ name, value }) => {
+        if (name === 'makeYear_min') {
+            setMakeYear(value, makeYear.max);
+        } else if (name === 'makeYear_max') {
+            setMakeYear(makeYear.min, value);
         }
     };
 
@@ -98,17 +85,15 @@ const CarFilters = ({ handleClose }) => {
                     <div>
                         <h4 className="text-lg font-medium mb-2">Budget (₹)</h4>
                         <div className="mb-3">
-                            <div className="flex justify-between text-sm text-gray-700 mb-1">
-                                <span>Min: {getPriceInLocalString(budget?.min)}</span>
-                                <span>Max: {getPriceInLocalString(budget?.max)}</span>
+                            <div className="flex justify-center text-sm font-semibold text-blue-600">
+                                <span>{getPriceInLocalString(budget?.max)}</span>
                             </div>
                             <RangeSlider
-                                name="maxBudget"
-                                id="maxBudget"
+                                name="budget"
                                 min={0}
                                 max={10000000}
+                                value={budget?.max}
                                 step={1000}
-                                initialValue={budget?.max}
                                 onChange={handleBudgetChange}
                             />
                         </div>
@@ -119,8 +104,8 @@ const CarFilters = ({ handleClose }) => {
                         <h4 className="text-lg font-medium mb-2">Brand</h4>
                         {availableBrands?.map((brand) => (
                             <div key={brand} className="flex items-center mb-1">
-                                <input type="checkbox" id={`brand-${brand}`} checked={selectedBrands.includes(brand)} onChange={() => toggleBrand(brand)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`brand-${brand}`} className="ml-2 text-sm text-gray-700">{getTitleCase(brand)}</label>
+                                <input type="checkbox" id={`brand-${brand}`} checked={selectedBrands.includes(brand)} onChange={() => toggleBrand(brand)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <label htmlFor={`brand-${brand}`} className="ml-2 text-sm text-gray-700">{DROPDOWN_VALUES_MAP[brand] || getTitleCase(brand)}</label>
                             </div>
                         ))}
                     </div>
@@ -131,8 +116,8 @@ const CarFilters = ({ handleClose }) => {
                         <h4 className="text-lg font-medium mb-2">Transmission</h4>
                         {availableTransmissions.map((transmission) => (
                             <div key={transmission} className="flex items-center mb-1">
-                                <input type="checkbox" id={`transmission-${transmission}`} checked={selectedTransmissions.includes(transmission)} onChange={() => toggleTransmission(transmission)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`transmission-${transmission}`} className="ml-2 text-sm text-gray-700">{transmission}</label>
+                                <input type="checkbox" id={`transmission-${transmission}`} checked={selectedTransmissions.includes(transmission)} onChange={() => toggleTransmission(transmission)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <label htmlFor={`transmission-${transmission}`} className="ml-2 text-sm text-gray-700">{DROPDOWN_VALUES_MAP[transmission] || getTitleCase(transmission)}</label>
                             </div>
                         ))}
                     </div>
@@ -142,12 +127,17 @@ const CarFilters = ({ handleClose }) => {
                     <div>
                         <h4 className="text-lg font-medium mb-2">Kilometers Driven</h4>
                         <div className="mb-3">
-                            <div className="flex justify-between text-sm text-gray-700 mb-1">
-                                <span className="text-xs text-gray-500">(0)</span>
-                                <span>Max: {Number(kmDriven.max).toLocaleString('en-IN')} km</span>
-                                <span className="text-xs text-gray-500">(100k)</span>
+                            <div className="flex justify-center text-sm font-semibold text-blue-600">
+                                <span>{Number(kmDriven.max).toLocaleString('en-IN')} km</span>
                             </div>
-                            <RangeSlider id="maxKm" name="maxKm" value={kmDriven.max} onChange={handleKmDrivenChange} min="0" max="100000" step="1000" />
+                            <RangeSlider
+                                name="kmDriven"
+                                min={0}
+                                max={200000}
+                                value={kmDriven?.max}
+                                step={1000}
+                                onChange={handleKmDrivenChange}
+                            />
                         </div>
                     </div>
                     <hr className="my-4" />
@@ -157,8 +147,8 @@ const CarFilters = ({ handleClose }) => {
                         <h4 className="text-lg font-medium mb-2">Fuel Types</h4>
                         {availableFuelTypes.map((fuelType) => (
                             <div key={fuelType} className="flex items-center mb-1">
-                                <input type="checkbox" id={`fuel-${fuelType}`} checked={selectedFuelTypes.includes(fuelType)} onChange={() => toggleFuelType(fuelType)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`fuel-${fuelType}`} className="ml-2 text-sm text-gray-700">{fuelType}</label>
+                                <input type="checkbox" id={`fuel-${fuelType}`} checked={selectedFuelTypes.includes(fuelType)} onChange={() => toggleFuelType(fuelType)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <label htmlFor={`fuel-${fuelType}`} className="ml-2 text-sm text-gray-700">{DROPDOWN_VALUES_MAP[fuelType] || getTitleCase(fuelType)}</label>
                             </div>
                         ))}
                     </div>
@@ -168,8 +158,8 @@ const CarFilters = ({ handleClose }) => {
                         <h4 className="text-lg font-medium mb-2">Body Type</h4>
                         {availableBodyTypes.map((bodyType) => (
                             <div key={bodyType} className="flex items-center mb-1">
-                                <input type="checkbox" id={`bodyType-${bodyType}`} checked={selectedBodyTypes.includes(bodyType)} onChange={() => toggleBodyType(bodyType)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`bodyType-${bodyType}`} className="ml-2 text-sm text-gray-700 capitalize">{bodyType.replace(/_/g, ' ')}</label>
+                                <input type="checkbox" id={`bodyType-${bodyType}`} checked={selectedBodyTypes.includes(bodyType)} onChange={() => toggleBodyType(bodyType)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <label htmlFor={`bodyType-${bodyType}`} className="ml-2 text-sm text-gray-700 capitalize">{DROPDOWN_VALUES_MAP[bodyType] || getTitleCase(bodyType)}</label>
                             </div>
                         ))}
                     </div>
@@ -180,7 +170,7 @@ const CarFilters = ({ handleClose }) => {
                         <h4 className="text-lg font-medium mb-2">Ownership</h4>
                         {availableOwnerships.map((ownerVal) => (
                             <div key={ownerVal} className="flex items-center mb-1">
-                                <input type="checkbox" id={`ownership-${ownerVal}`} checked={selectedOwnerships.includes(ownerVal)} onChange={() => toggleOwnership(ownerVal)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <input type="checkbox" id={`ownership-${ownerVal}`} checked={selectedOwnerships.includes(ownerVal)} onChange={() => toggleOwnership(ownerVal)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
                                 <label htmlFor={`ownership-${ownerVal}`} className="ml-2 text-sm text-gray-700">
                                     {ownerVal === 1 ? 'First Owner' : ownerVal === 2 ? 'Second Owner' : `${ownerVal}rd+ Owner`}
                                 </label>
@@ -189,24 +179,12 @@ const CarFilters = ({ handleClose }) => {
                     </div>
                     <hr className="my-4" />
 
-                    {/* Color Filter (Note: Data for 'color' is not in CARS.js) */}
-                    {/* <div className="mb-4">
-                        <h4 className="text-lg font-medium mb-2">Color</h4>
-                        {availableColors.map((color) => (
-                            <div key={color} className="flex items-center mb-1">
-                                <input type="checkbox" id={`color-${color}`} checked={selectedColors.includes(color)} onChange={() => toggleColor(color)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                                <label htmlFor={`color-${color}`} className="ml-2 text-sm text-gray-700">{color}</label>
-                            </div>
-                        ))}
-                    </div>
-                    <hr className="my-4" /> */}
-
                     {/* Seats Filter */}
                     <div className="mb-4">
                         <h4 className="text-lg font-medium mb-2">Seats</h4>
                         {availableSeats.map((seatCount) => (
                             <div key={seatCount} className="flex items-center mb-1">
-                                <input type="checkbox" id={`seat-${seatCount}`} checked={selectedSeats.includes(seatCount)} onChange={() => toggleSeat(seatCount)} className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
+                                <input type="checkbox" id={`seat-${seatCount}`} checked={selectedSeats.includes(seatCount)} onChange={() => toggleSeat(seatCount)} className="h-4 w-4 min-w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
                                 <label htmlFor={`seat-${seatCount}`} className="ml-2 text-sm text-gray-700">{seatCount} Seats</label>
                             </div>
                         ))}
@@ -216,16 +194,18 @@ const CarFilters = ({ handleClose }) => {
                     <div>
                         <h4 className="text-lg font-medium mb-2">Make Year</h4>
                         <div className="mb-3">
-                            <div className="flex justify-between text-sm text-gray-700 mb-1">
-                                <span>Min: {makeYear.min}</span>
-                                <span className="text-xs text-gray-500">({initialMakeYearRange?.min})</span>
-                                <span>Max: {makeYear.max}</span>
-                                <span className="text-xs text-gray-500">({initialMakeYearRange?.max})</span>
-                            </div>
-                            <RangeSlider id="maxMakeYear" name="maxMakeYear" value={makeYear.max} onChange={handleMakeYearChange} min={initialMakeYearRange?.min} max={initialMakeYearRange?.max} step="1" />
+                            <RangeSlider
+                                name="makeYear"
+                                min={initialMakeYearRange?.min}
+                                max={initialMakeYearRange?.max}
+                                minValue={makeYear.min}
+                                maxValue={makeYear.max}
+                                step="1"
+                                isDouble={true}
+                                onChange={handleMakeYearChange}
+                            />
                         </div>
                     </div>
-                    <hr className="mt-4" />
                 </>
             }
         </div>

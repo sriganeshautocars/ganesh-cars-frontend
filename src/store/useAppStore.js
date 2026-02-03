@@ -12,17 +12,12 @@ const sortOptionsList = [
     { value: 'age_desc', label: 'Car Age: New to Old' },
 ];
 
-const AVAILABLE_COLORS = ['White', 'Black', 'Silver', 'Red', 'Blue', 'Grey', 'Brown', 'Other']; // Predefined, as not in CARS data
-
-const AVAILABLE_TRANSMISSIONS = ["Automatic", "Manual"];
-const AVAILABLE_FUEL_TYPES = ["Petrol", "Diesel", "Electric", "CNG"];
-
 const initialFilterState = {
     cars: [],
     budget: { min: 0, max: 10000000 }, // Max 1 crore
     selectedBrands: [],
     selectedTransmissions: [],
-    kmDriven: { min: 0, max: 100000 },
+    kmDriven: { min: 0, max: 200000 },
     selectedFuelTypes: [],
     selectedBodyTypes: [],
     selectedOwnerships: [],
@@ -114,13 +109,13 @@ export const useCarDataStore = create((set, get) => ({
     filteredCars: [],
     ...initialFilterState,
     availableBrands: [],
-    availableTransmissions: AVAILABLE_TRANSMISSIONS,
-    availableFuelTypes: AVAILABLE_FUEL_TYPES,
+    availableTransmissions: [],
+    availableFuelTypes: [],
     availableBodyTypes: [],
     availableOwnerships: [],
-    availableColors: AVAILABLE_COLORS,
+    availableColors: [],
     availableSeats: [],
-    initialMakeYearRange: { min: 1900, max: new Date().getFullYear() },
+    initialMakeYearRange: { min: 1990, max: new Date().getFullYear() },
     shortlistedCarsCount: 0,
 
     // --- Internal action to update filtered cars ---
@@ -160,8 +155,8 @@ export const useCarDataStore = create((set, get) => ({
     setBudget: (min, max) => {
         set({
             budget: {
-                min: parseInt(min, 10) || 0,
-                max: parseInt(max, 10) || 10000000,
+                min: Number(min) || 0,
+                max: Number(max) || 10000000,
             },
         });
         get()._updateFilteredCars();
@@ -185,8 +180,8 @@ export const useCarDataStore = create((set, get) => ({
     setKmDriven: (min, max) => {
         set({
             kmDriven: {
-                min: parseInt(min, 10) || 0,
-                max: parseInt(max, 10) || 100000,
+                min: Number(min) || 0,
+                max: Number(max) || 200000,
             },
         });
         get()._updateFilteredCars();
@@ -248,14 +243,29 @@ export const useCarDataStore = create((set, get) => ({
     },
 
     setAllCars: (cars) => {
-        const allMakeYears = cars?.length > 0 ? cars?.map(car => car?.make_year) : [new Date().getFullYear() - 10];
-        const minMakeYear = cars?.length > 0 ? Math.min(...allMakeYears) : new Date().getFullYear() - 10;
+        const allMakeYears = cars?.length > 0 ? cars?.map(car => car?.make_year) : [new Date().getFullYear() - 15];
+        const minMakeYear = cars?.length > 0 ? Math.min(...allMakeYears) : new Date().getFullYear() - 15;
         const maxMakeYear = cars?.length > 0 ? Math.max(...allMakeYears) : new Date().getFullYear();
+
         const availableBrands = [...new Set(cars?.map((car) => car?.brand))].sort();
         const availableBodyTypes = [...new Set(cars?.map(car => car?.body_type))].sort();
         const availableOwnerships = [...new Set(cars?.map(car => car?.ownership))].sort((a, b) => a - b)
         const availableSeats = [...new Set(cars?.map(car => car?.no_of_seats))].sort((a, b) => a - b)?.filter(seat => !!seat);
-        set({ allCars: cars, filteredCars: cars, initialMakeYearRange: { min: minMakeYear, max: maxMakeYear }, availableBrands, availableBodyTypes, availableOwnerships, availableSeats });
+        // Derive available transmissions and fuel types from the cars list
+        const availableTransmissions = [...new Set(cars?.map(car => car?.transmission_type).filter(Boolean))].sort();
+        const availableFuelTypes = [...new Set(cars?.map(car => car?.fuel_type).filter(Boolean))].sort();
+
+        set({
+            allCars: cars,
+            filteredCars: cars,
+            initialMakeYearRange: { min: minMakeYear, max: maxMakeYear },
+            availableBrands,
+            availableBodyTypes,
+            availableOwnerships,
+            availableSeats,
+            availableTransmissions,
+            availableFuelTypes,
+        });
         get()._updateFilteredCars();
     },
 
