@@ -37,6 +37,7 @@ const CarFilters = ({ handleClose }) => {
         setMakeYear,
         clearFilters,
         isLoading,
+        hasActiveFilters
     } = useCarDataStore();
 
     const handleBudgetChange = ({ name, value }) => {
@@ -59,28 +60,35 @@ const CarFilters = ({ handleClose }) => {
         }
     };
 
+    const handleClearFilters = () => {
+        clearFilters();
+        handleClose();
+    }
+
 
     return (
-        <div className="border border-gray-300 p-5 w-full m-0 sm:mr-5 h-auto rounded-md bg-white">
-            <div className="flex items-center justify-between">
+        <div className="border border-gray-300 py-5 w-full m-0 sm:mr-5 h-auto rounded-md bg-white">
+            <div className="flex items-center justify-between px-5">
                 <h3 className="w-full flex justify-between gap-x-2 items-center text-xl font-semibold mb-4">
                     <div className="flex items-center gap-2">
                         <span className="block sm:hidden" onClick={handleClose}><BiArrowBack /></span>
                         <span>Filters</span>
                     </div>
-                    <button
-                        onClick={clearFilters}
-                        className="font-medium text-base text-blue-500 underline"
-                    >
-                        Clear Filters
-                    </button>
+                    {
+                        hasActiveFilters() && <button
+                            onClick={handleClearFilters}
+                            className="font-medium text-base text-blue-500 underline"
+                        >
+                            Clear Filters
+                        </button>
+                    }
                 </h3>
             </div>
             {isLoading
                 ?
                 <FiltersLoader />
                 :
-                <>
+                <div className="max-h-[80vh] sm:max-h-[75vh] overflow-y-auto px-5">
                     {/* Budget Filter */}
                     <div>
                         <h4 className="text-lg font-medium mb-2">Budget (₹)</h4>
@@ -206,7 +214,7 @@ const CarFilters = ({ handleClose }) => {
                             />
                         </div>
                     </div>
-                </>
+                </div>
             }
         </div>
     );

@@ -11,7 +11,7 @@ import { CarListingCardLoader } from "../../components/Loaders/ListingCardLoader
 const CarListing = () => {
     const [showFilters, setShowFilters] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
-    const { filteredCars, isLoading } = useCarDataStore();
+    const { filteredCars, isLoading, hasActiveFilters } = useCarDataStore();
 
     const params = new URLSearchParams(window.location.search);
     const searchQuery = params.get("search");
@@ -80,7 +80,7 @@ const CarListing = () => {
                 <div className="w-full flex items-center justify-between mb-2">
                     <div className="flex items-center gap-x-2">
                         <div className="block sm:hidden">
-                            <p className="flex items-center gap-x-1 border border-gray-500 rounded-md p-2" onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
+                            <p className={`flex items-center gap-x-1 border-2 rounded-md p-2 ${hasActiveFilters() ? 'border-blue-500' : 'border-gray-400'}`} onClick={() => setShowFilters(true)}>Filters <FiFilter /></p>
                             {showFilters &&
                                 <div className="absolute z-30 w-full max-w-screen top-14 left-0 right-0 bg-white">
                                     <CarFilters handleClose={() => setShowFilters(false)} />

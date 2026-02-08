@@ -2,7 +2,7 @@ import Shimmer from "../../ShimmerLoader"
 
 export const FiltersLoader = () => {
     return (
-        <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col px-5">
             <Shimmer variant="rect" height={28} width="30%" />
             <Shimmer lines={2} variant="text" gap={0} height={20} width="100%" />
             <hr className="my-2" />

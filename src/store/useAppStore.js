@@ -29,6 +29,37 @@ const initialFilterState = {
     isLoading: false
 };
 
+const isAnyFilterApplied = (filters = {}) => {
+    const {
+        budget = initialFilterState.budget,
+        selectedBrands = [],
+        selectedTransmissions = [],
+        kmDriven = initialFilterState.kmDriven,
+        selectedFuelTypes = [],
+        selectedBodyTypes = [],
+        selectedOwnerships = [],
+        selectedColors = [],
+        selectedSeats = [],
+        makeYear = initialFilterState.makeYear,
+        selectedSort = initialFilterState.selectedSort,
+    } = filters;
+
+    // Only return true if ANY value differs from initial state
+    if (JSON.stringify(budget) !== JSON.stringify(initialFilterState.budget)) return true;
+    if (JSON.stringify(selectedBrands) !== JSON.stringify(initialFilterState.selectedBrands)) return true;
+    if (JSON.stringify(selectedTransmissions) !== JSON.stringify(initialFilterState.selectedTransmissions)) return true;
+    if (JSON.stringify(kmDriven) !== JSON.stringify(initialFilterState.kmDriven)) return true;
+    if (JSON.stringify(selectedFuelTypes) !== JSON.stringify(initialFilterState.selectedFuelTypes)) return true;
+    if (JSON.stringify(selectedBodyTypes) !== JSON.stringify(initialFilterState.selectedBodyTypes)) return true;
+    if (JSON.stringify(selectedOwnerships) !== JSON.stringify(initialFilterState.selectedOwnerships)) return true;
+    if (JSON.stringify(selectedColors) !== JSON.stringify(initialFilterState.selectedColors)) return true;
+    if (JSON.stringify(selectedSeats) !== JSON.stringify(initialFilterState.selectedSeats)) return true;
+    if (JSON.stringify(makeYear) !== JSON.stringify(initialFilterState.makeYear)) return true;
+    if (selectedSort !== initialFilterState.selectedSort) return true;
+
+    return false;
+};
+
 const applyFilters = (cars, filters) => {
     // 1. Apply existing filters
     let carsToDisplay = cars.filter((car) => {
@@ -76,7 +107,7 @@ const applyFilters = (cars, filters) => {
         return true;
     });
 
-    console.log('cars to disp', carsToDisplay)
+    console.log('cars to disp', carsToDisplay);
 
     // 2. Apply sorting
     const comparator = getSortComparator(filters?.selectedSort);
@@ -86,7 +117,7 @@ const applyFilters = (cars, filters) => {
         carsToDisplay = [...carsToDisplay].sort(comparator);
     }
 
-    return carsToDisplay?.length > 0 ? carsToDisplay : cars;
+    return (carsToDisplay?.length > 0 || isAnyFilterApplied(filters)) ? carsToDisplay : cars;
 };
 
 const getSortComparator = (sortValue) => {
@@ -155,8 +186,8 @@ export const useCarDataStore = create((set, get) => ({
     setBudget: (min, max) => {
         set({
             budget: {
-                min: Number(min) || 0,
-                max: Number(max) || 10000000,
+                min: Number(min) >= 0 ? Number(min) : 0,
+                max: Number(max) >= 0 ? Number(max) : 10000000,
             },
         });
         get()._updateFilteredCars();
@@ -180,8 +211,8 @@ export const useCarDataStore = create((set, get) => ({
     setKmDriven: (min, max) => {
         set({
             kmDriven: {
-                min: Number(min) || 0,
-                max: Number(max) || 200000,
+                min: Number(min) >= 0 ? Number(min) : 0,
+                max: Number(max) >= 0 ? Number(max) : 200000,
             },
         });
         get()._updateFilteredCars();
@@ -227,7 +258,9 @@ export const useCarDataStore = create((set, get) => ({
         get()._updateFilteredCars();
     },
     setMakeYear: (min, max) => { // Assuming single slider controls max year
-        set({ makeYear: { min: parseInt(min, 10) || 0, max: parseInt(max, 10) || 0 } });
+        const minYear = parseInt(min, 10);
+        const maxYear = parseInt(max, 10);
+        set({ makeYear: { min: !isNaN(minYear) ? minYear : initialFilterState.makeYear.min, max: !isNaN(maxYear) ? maxYear : initialFilterState.makeYear.max } });
         get()._updateFilteredCars();
     },
 
@@ -244,7 +277,7 @@ export const useCarDataStore = create((set, get) => ({
 
     setAllCars: (cars) => {
         const allMakeYears = cars?.length > 0 ? cars?.map(car => car?.make_year) : [new Date().getFullYear() - 15];
-        const minMakeYear = cars?.length > 0 ? Math.min(...allMakeYears) : new Date().getFullYear() - 15;
+        //const minMakeYear = cars?.length > 0 ? Math.min(...allMakeYears) : new Date().getFullYear() - 15;
         const maxMakeYear = cars?.length > 0 ? Math.max(...allMakeYears) : new Date().getFullYear();
 
         const availableBrands = [...new Set(cars?.map((car) => car?.brand))].sort();
@@ -258,7 +291,7 @@ export const useCarDataStore = create((set, get) => ({
         set({
             allCars: cars,
             filteredCars: cars,
-            initialMakeYearRange: { min: minMakeYear, max: maxMakeYear },
+            initialMakeYearRange: { min: 1990, max: maxMakeYear },
             availableBrands,
             availableBodyTypes,
             availableOwnerships,
@@ -275,5 +308,35 @@ export const useCarDataStore = create((set, get) => ({
 
     setIsLoading: (isLoading) => {
         set({ isLoading });
+    },
+
+    hasActiveFilters: () => {
+        const {
+            budget,
+            selectedBrands,
+            selectedTransmissions,
+            kmDriven,
+            selectedFuelTypes,
+            selectedBodyTypes,
+            selectedOwnerships,
+            selectedColors,
+            selectedSeats,
+            makeYear,
+            selectedSort,
+        } = get();
+
+        return isAnyFilterApplied({
+            budget,
+            selectedBrands,
+            selectedTransmissions,
+            kmDriven,
+            selectedFuelTypes,
+            selectedBodyTypes,
+            selectedOwnerships,
+            selectedColors,
+            selectedSeats,
+            makeYear,
+            selectedSort,
+        });
     }
 }));
